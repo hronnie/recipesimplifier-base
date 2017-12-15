@@ -5,10 +5,19 @@ spring:
     username: gastrouser
     password: gastropw
     platform: mysql
-    initialize: false
+    initialize: true
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
-
+    # database-platform: org.hibernate.dialect.MySQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+      
+    properties: 
+      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+      hibernate: 
+        id:
+          new_generator_mappings: false
+        format_sql: true
 ---
 spring:
   profiles: container
@@ -17,3 +26,13 @@ spring:
     username: ${DATABASE_USER}
     password: ${DATABASE_PASSWORD}
     initialize: true
+    
+    
+# ==============================================================
+# = Spring Security / Queries for AuthenticationManagerBuilder  
+# ==============================================================
+spring: 
+  queries: 
+    users-query: select email, password, active from user where email=?
+    roles-query: select u.email, r.role from user u inner join user_role ur on(u.user_id=ur.user_id) inner join role r on(ur.role_id=r.role_id) where u.email=?
+
