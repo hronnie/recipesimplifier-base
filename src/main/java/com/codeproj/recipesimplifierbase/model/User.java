@@ -1,4 +1,4 @@
-package com.codeproj.model;
+package com.codeproj.recipesimplifierbase.model;
 
 import java.util.Set;
 

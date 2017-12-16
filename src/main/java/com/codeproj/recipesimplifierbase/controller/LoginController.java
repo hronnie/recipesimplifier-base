@@ -1,4 +1,4 @@
-package com.codeproj.controller;
+package com.codeproj.recipesimplifierbase.controller;
 
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;

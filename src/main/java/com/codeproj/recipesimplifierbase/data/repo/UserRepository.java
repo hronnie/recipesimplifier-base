@@ -1,9 +1,9 @@
-package com.codeproj.data.repo;
+package com.codeproj.recipesimplifierbase.data.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.codeproj.model.User;
+import com.codeproj.recipesimplifierbase.model.User;
 
 
 @Repository("userRepository")

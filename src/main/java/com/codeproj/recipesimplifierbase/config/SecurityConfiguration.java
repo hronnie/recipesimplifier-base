@@ -1,4 +1,4 @@
-package com.codeproj.config;
+package com.codeproj.recipesimplifierbase.config;
 
 import javax.sql.DataSource;
 

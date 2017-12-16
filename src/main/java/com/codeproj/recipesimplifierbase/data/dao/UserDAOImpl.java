@@ -1,4 +1,4 @@
-package com.codeproj.data.dao;
+package com.codeproj.recipesimplifierbase.data.dao;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.codeproj.data.repo.RoleRepository;
-import com.codeproj.data.repo.UserRepository;
-import com.codeproj.model.Role;
-import com.codeproj.model.User;
+import com.codeproj.recipesimplifierbase.data.repo.RoleRepository;
+import com.codeproj.recipesimplifierbase.data.repo.UserRepository;
+import com.codeproj.recipesimplifierbase.model.Role;
+import com.codeproj.recipesimplifierbase.model.User;
 
 
 @Service("userService")

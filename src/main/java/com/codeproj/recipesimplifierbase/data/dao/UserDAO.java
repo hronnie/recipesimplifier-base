@@ -1,6 +1,6 @@
-package com.codeproj.data.dao;
+package com.codeproj.recipesimplifierbase.data.dao;
 
-import com.codeproj.model.User;
+import com.codeproj.recipesimplifierbase.model.User;
 
 public interface UserDAO {
 	

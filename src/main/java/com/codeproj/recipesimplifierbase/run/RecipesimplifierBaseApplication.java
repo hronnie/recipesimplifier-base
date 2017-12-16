@@ -1,4 +1,4 @@
-package com.codeproj.recipesimplifierbase.recipesimplifierbase;
+package com.codeproj.recipesimplifierbase.run;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
