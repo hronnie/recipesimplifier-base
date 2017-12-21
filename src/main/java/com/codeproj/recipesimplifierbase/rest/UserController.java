@@ -34,15 +34,10 @@ public class UserController {
         return this.userDAO.findAll();
     }
 
-
-    /*
-     *  We are not using userDAO.findByUsername here(we could),
-     *  so it is good that we are making sure that the user has role "ROLE_USER"
-     *  to access this endpoint.
-     */
     @RequestMapping("/whoami")
     @PreAuthorize("hasRole('USER')")
     public User user(Principal user) {
         return this.userDAO.findByUsername(user.getName());
     }
+    
 }

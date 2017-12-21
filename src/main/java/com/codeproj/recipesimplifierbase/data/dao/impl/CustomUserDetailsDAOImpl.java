@@ -40,7 +40,6 @@ public class CustomUserDetailsDAOImpl implements UserDetailsService {
     }
 
     public void changePassword(String oldPassword, String newPassword) {
-
         Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
         String username = currentUser.getName();
 
@@ -60,6 +59,5 @@ public class CustomUserDetailsDAOImpl implements UserDetailsService {
 
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
-
     }
 }

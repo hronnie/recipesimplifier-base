@@ -20,15 +20,13 @@ import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by fan.jin on 2016-10-15.
- */
-
 @Entity
 @Table(name="USERS")
 public class User implements UserDetails {
 
-    @Id
+	private static final long serialVersionUID = -9042501670127664297L;
+
+	@Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

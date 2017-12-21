@@ -15,11 +15,6 @@ import com.codeproj.recipesimplifierbase.model.User;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
-
-/**
- * Created by fan.jin on 2016-10-19.
- */
-
 @Component
 public class TokenHelper {
 
@@ -90,7 +85,7 @@ public class TokenHelper {
             refreshedToken = Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate(device))
-                .signWith( SIGNATURE_ALGORITHM, SECRET )
+                .signWith(SIGNATURE_ALGORITHM, SECRET)
                 .compact();
         } catch (Exception e) {
             refreshedToken = null;
@@ -106,7 +101,7 @@ public class TokenHelper {
                 .setAudience(audience)
                 .setIssuedAt(timeProvider.now())
                 .setExpiration(generateExpirationDate(device))
-                .signWith( SIGNATURE_ALGORITHM, SECRET )
+                .signWith(SIGNATURE_ALGORITHM, SECRET)
                 .compact();
     }
 
@@ -160,10 +155,6 @@ public class TokenHelper {
     }
 
     public String getToken( HttpServletRequest request ) {
-        /**
-         *  Getting the token from Authentication header
-         *  e.g Bearer your_token
-         */
         String authHeader = getAuthHeaderFromHeader( request );
         if ( authHeader != null && authHeader.startsWith("Bearer ")) {
             return authHeader.substring(7);

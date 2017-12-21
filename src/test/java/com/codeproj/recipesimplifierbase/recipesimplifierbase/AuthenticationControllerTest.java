@@ -1,8 +1,9 @@
 package com.codeproj.recipesimplifierbase.recipesimplifierbase;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
+//import static org.mockito.ArgumentMatcher.any;
+//import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -37,6 +38,8 @@ import com.codeproj.recipesimplifierbase.model.Authority;
 import com.codeproj.recipesimplifierbase.model.User;
 import com.codeproj.recipesimplifierbase.rest.AuthenticationController;
 import com.codeproj.recipesimplifierbase.security.TokenHelper;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 
 /**
  * Created by fanjin on 2017-09-01.

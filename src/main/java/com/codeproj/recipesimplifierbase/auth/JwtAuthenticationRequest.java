@@ -1,6 +1,7 @@
 package com.codeproj.recipesimplifierbase.auth;
 
 public class JwtAuthenticationRequest {
+	
     private String username;
     private String password;
 
@@ -28,4 +29,5 @@ public class JwtAuthenticationRequest {
     public void setPassword(String password) {
         this.password = password;
     }
+    
 }

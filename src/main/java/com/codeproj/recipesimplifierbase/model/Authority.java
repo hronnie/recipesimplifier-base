@@ -5,15 +5,13 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
-/**
- * Created by fan.jin on 2016-11-03.
- */
-
 @Entity
 @Table(name="AUTHORITY")
 public class Authority implements GrantedAuthority {
 
-    @Id
+	private static final long serialVersionUID = -1604526622204580333L;
+
+	@Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;

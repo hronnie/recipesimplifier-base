@@ -27,10 +27,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by fan.jin on 2016-10-19.
- */
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -54,9 +50,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void configureGlobal( AuthenticationManagerBuilder auth ) throws Exception {
-        auth.userDetailsService( jwtUserDetailsService )
-            .passwordEncoder( passwordEncoder() );
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(jwtUserDetailsService)
+            .passwordEncoder(passwordEncoder());
     }
 
     @Autowired
@@ -65,11 +61,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         List<RequestMatcher> csrfMethods = new ArrayList<>();
-        Arrays.asList( "POST", "PUT", "PATCH", "DELETE" )
-                .forEach( method -> csrfMethods.add( new AntPathRequestMatcher( "/**", method ) ) );
+        Arrays.asList("POST", "PUT", "PATCH", "DELETE")
+                .forEach(method -> csrfMethods.add(new AntPathRequestMatcher("/**", method)));
         http
-                .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS ).and()
-                .exceptionHandling().authenticationEntryPoint( restAuthenticationEntryPoint ).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
                 .authorizeRequests()
                 .antMatchers(
                         HttpMethod.GET,
@@ -80,7 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.html",
                         "/**/*.css",
                         "/**/*.js"
-                ).permitAll()
+               ).permitAll()
                 .antMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated().and()
                 .addFilterBefore(new TokenAuthenticationFilter(tokenHelper, jwtUserDetailsService), BasicAuthenticationFilter.class);
@@ -91,11 +87,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        // TokenAuthenticationFilter will ignore the below paths
         web.ignoring().antMatchers(
                 HttpMethod.POST,
                 "/auth/login"
-        );
+       );
         web.ignoring().antMatchers(
                 HttpMethod.GET,
                 "/",
@@ -105,7 +100,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/**/*.html",
                 "/**/*.css",
                 "/**/*.js"
-            );
-
+           );
     }
+    
 }
