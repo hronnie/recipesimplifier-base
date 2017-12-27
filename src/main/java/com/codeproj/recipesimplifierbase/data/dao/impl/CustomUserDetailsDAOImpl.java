@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.codeproj.recipesimplifierbase.data.repo.UserRepository;
 import com.codeproj.recipesimplifierbase.model.User;
 
 @Service
@@ -21,7 +22,7 @@ public class CustomUserDetailsDAOImpl implements UserDetailsService {
     protected final Log LOGGER = LogFactory.getLog(getClass());
 
     @Autowired
-    private com.codeproj.recipesimplifierbase.data.repo.UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -37,6 +38,15 @@ public class CustomUserDetailsDAOImpl implements UserDetailsService {
         } else {
             return user;
         }
+    }
+    
+    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
+    	User user = userRepository.findByEmail(email);
+    	if (user == null) {
+    		throw new UsernameNotFoundException(String.format("No user found with username '%s'.", email));
+    	} else {
+    		return user;
+    	}
     }
 
     public void changePassword(String oldPassword, String newPassword) {

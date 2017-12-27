@@ -51,10 +51,12 @@ public class AuthenticationController {
             HttpServletResponse response,
             Device device
     ) throws AuthenticationException, IOException {
+    	
+    	User checkUser = (User)userDetailsService.loadUserByEmail(authenticationRequest.getEmail());
 
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        authenticationRequest.getUsername(),
+                		checkUser.getUsername(),
                         authenticationRequest.getPassword()
                 )
         );
