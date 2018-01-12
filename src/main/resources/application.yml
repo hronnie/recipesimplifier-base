@@ -3,13 +3,15 @@ app:
   
 spring:
   datasource:
-    url: jdbc:mysql://172.17.0.2:3306/gastroadmin
+    url: jdbc:mysql://localhost:3306/gastroadmin?useSSL=false
     username: gastrouser
     password: gastropw
-    platform: mysql
+    #platform: mysql
     initialize: true
   jpa:
-#    database-platform: org.hibernate.dialect.MySQL5DBDialect
+    show-sql: false
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5DBDialect
     generate-ddl: true
     hibernate:
       ddl-auto: create
@@ -21,12 +23,7 @@ spring:
         id:
           new_generator_mappings: false
 ---
-  profiles: container
-  datasource:
-    url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
-    username: ${DATABASE_USER}
-    password: ${DATABASE_PASSWORD}
-    initialize: true
+
     
     
 # ==============================================================
