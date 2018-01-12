@@ -1,4 +1,4 @@
-package com.codeproj.recipesimplifierbase.recipesimplifierbase;
+package com.codeproj.recipesimplifierbase;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

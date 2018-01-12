@@ -1,16 +1,15 @@
-package com.codeproj.recipesimplifierbase.recipesimplifierbase;
+package com.codeproj.recipesimplifierbase.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-/**
- * Created by fanjin on 2017-08-31.
- */
 public class UserDetailsDummy implements UserDetails {
 
-    private final String username;
+	private static final long serialVersionUID = 1286895247294468899L;
+	
+	private final String username;
 
     public UserDetailsDummy(String username) {
         this.username = username;

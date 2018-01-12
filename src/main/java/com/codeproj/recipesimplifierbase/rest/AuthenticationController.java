@@ -93,14 +93,14 @@ public class AuthenticationController {
         return ResponseEntity.accepted().body(userTokenState);
     }
 
-    @RequestMapping(value = "/change-password", method = RequestMethod.POST)
-    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> changePassword(@RequestBody PasswordChanger passwordChanger) {
-        userDetailsService.changePassword(passwordChanger.oldPassword, passwordChanger.newPassword);
-        Map<String, String> result = new HashMap<>();
-        result.put( "result", "success" );
-        return ResponseEntity.accepted().body(result);
-    }
+//    @RequestMapping(value = "/change-password", method = RequestMethod.POST)
+//    @PreAuthorize("hasRole('USER')")
+//    public ResponseEntity<?> changePassword(@RequestBody PasswordChanger passwordChanger) {
+//        userDetailsService.changePassword(passwordChanger.oldPassword, passwordChanger.newPassword);
+//        Map<String, String> result = new HashMap<>();
+//        result.put( "result", "success" );
+//        return ResponseEntity.accepted().body(result);
+//    }
 
     static class PasswordChanger {
         public String oldPassword;

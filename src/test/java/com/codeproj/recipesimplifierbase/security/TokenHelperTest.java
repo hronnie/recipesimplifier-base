@@ -1,4 +1,4 @@
-package com.codeproj.recipesimplifierbase.recipesimplifierbase;
+package com.codeproj.recipesimplifierbase.security;
 
 
 import org.assertj.core.util.DateUtil;
@@ -11,6 +11,7 @@ import org.springframework.mobile.device.Device;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import com.codeproj.recipesimplifierbase.common.DeviceDummy;
 import com.codeproj.recipesimplifierbase.common.TimeProvider;
 import com.codeproj.recipesimplifierbase.model.User;
 import com.codeproj.recipesimplifierbase.security.TokenHelper;
@@ -22,9 +23,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by fan.jin on 2017-01-08.
- */
 public class TokenHelperTest {
 
     private static final String TEST_USERNAME = "testUser";

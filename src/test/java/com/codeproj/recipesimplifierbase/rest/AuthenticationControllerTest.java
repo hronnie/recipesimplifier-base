@@ -1,7 +1,5 @@
-package com.codeproj.recipesimplifierbase.recipesimplifierbase;
+package com.codeproj.recipesimplifierbase.rest;
 
-//import static org.mockito.ArgumentMatcher.any;
-//import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
@@ -31,6 +29,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.codeproj.recipesimplifierbase.common.DeviceDummy;
 import com.codeproj.recipesimplifierbase.common.DeviceProvider;
 import com.codeproj.recipesimplifierbase.common.TimeProvider;
 import com.codeproj.recipesimplifierbase.data.dao.impl.CustomUserDetailsDAOImpl;
@@ -41,9 +40,6 @@ import com.codeproj.recipesimplifierbase.security.TokenHelper;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 
-/**
- * Created by fanjin on 2017-09-01.
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AuthenticationControllerTest {
