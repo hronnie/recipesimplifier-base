@@ -14,16 +14,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.codeproj.recipesimplifierbase.security.TokenHelper;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private TokenHelper tokenHelper;
-
     private UserDetailsService userDetailsService;
-
-    public TokenAuthenticationFilter(TokenHelper tokenHelper, UserDetailsService userDetailsService) {
-        this.tokenHelper = tokenHelper;
-        this.userDetailsService = userDetailsService;
-    }
 
     @Override
     public void doFilterInternal(

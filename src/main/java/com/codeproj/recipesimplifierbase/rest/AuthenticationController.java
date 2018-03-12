@@ -7,6 +7,9 @@ import com.codeproj.recipesimplifierbase.model.User;
 import com.codeproj.recipesimplifierbase.model.UserTokenState;
 import com.codeproj.recipesimplifierbase.security.TokenHelper;
 
+import lombok.AccessLevel;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -65,7 +68,7 @@ public class AuthenticationController {
 
         User user = (User)authentication.getPrincipal();
         String jws = tokenHelper.generateToken( user.getUsername(), device);
-        int expiresIn = tokenHelper.getExpiredIn(device);
+        Long expiresIn = new Long(tokenHelper.getExpiredIn(device));
         
         return ResponseEntity.ok(new UserTokenState(jws, expiresIn));
     }
@@ -84,7 +87,7 @@ public class AuthenticationController {
         if (authToken != null && principal != null) {
 
             String refreshedToken = tokenHelper.refreshToken(authToken, device);
-            int expiresIn = tokenHelper.getExpiredIn(device);
+            Long expiresIn = new Long(tokenHelper.getExpiredIn(device));
 
             return ResponseEntity.ok(new UserTokenState(refreshedToken, expiresIn));
         } 
