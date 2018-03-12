@@ -38,7 +38,6 @@ import com.codeproj.recipesimplifierbase.model.User;
 import com.codeproj.recipesimplifierbase.rest.AuthenticationController;
 import com.codeproj.recipesimplifierbase.security.TokenHelper;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -160,7 +159,12 @@ public class AuthenticationControllerTest {
         this.mvc.perform(post("/auth/refresh").header("Authorization", "Bearer " + token))
                 .andExpect(content().json("{access_token:null,expires_in:null}"));
     }
-
+    
+    @Test
+    public void testCreateAuthentication() {
+    		
+    }
+ 
     private String createToken(Device device) {
         return tokenHelper.generateToken(TEST_USERNAME, device);
     }
