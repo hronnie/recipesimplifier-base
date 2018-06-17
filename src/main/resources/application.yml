@@ -38,3 +38,13 @@ spring:
     expires_in: 300 # 5 minutes
     mobile_expires_in: 600 # 10 minutes
     secret: queenvictoria
+
+
+# ==============================================================
+# = DB config
+## ==============================================================
+#CREATE USER 'gastrouser'@'localhost' IDENTIFIED BY 'gastropw';
+#GRANT ALL PRIVILEGES ON *.* TO 'gastrouser'@'localhost' WITH GRANT OPTION;
+#CREATE USER 'gastrouser'@'%' IDENTIFIED BY 'gastropw';
+#GRANT ALL PRIVILEGES ON *.* TO 'gastrouser'@'%' WITH GRANT OPTION;
+#mysql -u gastrouser -p -e "create database gastroadmin"
