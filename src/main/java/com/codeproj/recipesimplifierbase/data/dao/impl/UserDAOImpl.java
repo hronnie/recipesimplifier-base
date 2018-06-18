@@ -26,7 +26,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public User findById(Long id) throws AccessDeniedException {
-    	User  u = userRepository.findOne(id);
+    	User  u = userRepository.getOne(id);
         return u;
     }
     
