@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Preparation {
 
     @Id
-    @Column(name = "preparation_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long preparationId;
 
@@ -24,9 +24,8 @@ public class Preparation {
     private String description;
 
     @Column(name = "duration")
-    private String duration;
+    private Integer duration;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false)
     private Recipe recipe;
 }

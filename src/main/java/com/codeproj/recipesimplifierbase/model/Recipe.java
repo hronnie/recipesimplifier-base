@@ -15,20 +15,23 @@ import java.util.Set;
 public class Recipe {
 
     @Id
-    @Column(name = "recipe_id")
+//    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long recipeId;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="recipe_id")
     private Set<Ingredient> ingredients;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="recipe_id")
     private Set<Preparation> preparations;
 
-    @OneToMany(mappedBy = "recipe")
-    private Set<Process> processes;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="recipe_id")
+    private Set<RecipeProcess> processes;
 
 }

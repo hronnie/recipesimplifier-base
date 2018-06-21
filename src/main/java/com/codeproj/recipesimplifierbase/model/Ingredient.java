@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Ingredient {
 
     @Id
-    @Column(name = "ingredient_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ingredientId;
 
@@ -30,7 +30,6 @@ public class Ingredient {
     private String unit;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false)
     private Recipe recipe;
 
 }

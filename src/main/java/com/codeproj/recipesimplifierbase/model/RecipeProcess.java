@@ -12,11 +12,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="Process")
-public class Process {
+@Table(name="RecipeProcess")
+public class RecipeProcess {
 
     @Id
-    @Column(name = "process_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long processId;
 
@@ -27,6 +27,5 @@ public class Process {
     private Integer duration;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false)
     private Recipe recipe;
 }
