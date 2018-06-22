@@ -15,11 +15,11 @@ import java.util.Set;
 public class Recipe {
 
     @Id
-//    @Column(name = "id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long recipeId;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL)

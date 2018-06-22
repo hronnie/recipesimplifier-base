@@ -15,6 +15,11 @@ import javax.persistence.*;
 @Table(name="RecipeProcess")
 public class RecipeProcess {
 
+    public RecipeProcess(String description, Integer duration) {
+        this.description = description;
+        this.duration = duration;
+    }
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
