@@ -18,6 +18,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
 //        return recipe;
 //    }
 
+    public Recipe findRecipeByName(String name);
 
     default void create(Recipe newRecipe) {
         save(newRecipe);

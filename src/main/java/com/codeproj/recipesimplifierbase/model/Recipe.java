@@ -19,7 +19,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long recipeId;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL)

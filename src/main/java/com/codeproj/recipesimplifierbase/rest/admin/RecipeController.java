@@ -33,6 +33,12 @@ public class RecipeController {
             logger.debug("newRecipe is not a valid Recipe object");
             return ResponseEntity.unprocessableEntity().build();
         }
+        Recipe exsitingRecipe = recipeRepository.findRecipeByName(newRecipe.getName());
+        if (exsitingRecipe != null) {
+            logger.debug("newRecipe is not a valid Recipe object, name already exist");
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
         recipeRepository.create(newRecipe);
         return ResponseEntity.ok(newRecipe);
     }
