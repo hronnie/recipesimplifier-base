@@ -92,6 +92,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/auth/login"
        );
         web.ignoring().antMatchers(
+                HttpMethod.OPTIONS,
+                "/**"
+        );
+        web.ignoring().antMatchers(
                 HttpMethod.GET,
                 "/",
                 "/webjars/**",
