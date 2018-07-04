@@ -49,6 +49,9 @@ public class RecipeControllerTest {
     Set<Preparation> CHANGE_PREPARATIONS = null;
 
     public static final String VALID_NAME = "Gulyas";
+    public static final String VALID_CATEGORY = "Leves";
+    public static final Integer VALID_PRICE = 5000;
+    public static final Integer VALID_CALORIE = 1000;
 
     @Before
     public void setUp() throws Exception {
@@ -96,48 +99,109 @@ public class RecipeControllerTest {
         recipe.setIngredients(VALID_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(EMPTY_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
         recipe.setPreparations(EMPTY_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
         recipe.setProcesses(EMPTY_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
+
+        recipe.setName(VALID_NAME);
+        recipe.setIngredients(VALID_INGREDIENTS);
+        recipe.setPreparations(VALID_PREPARATIONS);
+        recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory("");
+        assertRecipeWithInvalidInput();
+
 
         recipe.setName(null);
         recipe.setIngredients(VALID_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(null);
         recipe.setPreparations(VALID_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
         recipe.setPreparations(null);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
         recipe.setProcesses(null);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
+        assertRecipeWithInvalidInput();
+
+        recipe.setName(VALID_NAME);
+        recipe.setIngredients(VALID_INGREDIENTS);
+        recipe.setPreparations(VALID_PREPARATIONS);
+        recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(null);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
+        assertRecipeWithInvalidInput();
+
+        recipe.setName(VALID_NAME);
+        recipe.setIngredients(VALID_INGREDIENTS);
+        recipe.setPreparations(VALID_PREPARATIONS);
+        recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(null);
+        recipe.setCategory(VALID_CATEGORY);
+        assertRecipeWithInvalidInput();
+
+        recipe.setName(VALID_NAME);
+        recipe.setIngredients(VALID_INGREDIENTS);
+        recipe.setPreparations(VALID_PREPARATIONS);
+        recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(null);
         assertRecipeWithInvalidInput();
     }
 
@@ -147,6 +211,9 @@ public class RecipeControllerTest {
         recipe.setIngredients(VALID_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
@@ -156,6 +223,9 @@ public class RecipeControllerTest {
         recipe.setIngredients(CHANGE_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
@@ -166,6 +236,9 @@ public class RecipeControllerTest {
         recipe.setIngredients(CHANGE_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
@@ -176,6 +249,9 @@ public class RecipeControllerTest {
         recipe.setIngredients(CHANGE_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
@@ -185,6 +261,9 @@ public class RecipeControllerTest {
         CHANGE_PREPARATIONS.add(prep);
         recipe.setPreparations(CHANGE_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
@@ -194,6 +273,9 @@ public class RecipeControllerTest {
         CHANGE_PREPARATIONS.add(prep);
         recipe.setPreparations(CHANGE_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
@@ -203,6 +285,9 @@ public class RecipeControllerTest {
         CHANGE_PROCESSES.clear();
         CHANGE_PROCESSES.add(proc);
         recipe.setProcesses(CHANGE_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
@@ -212,6 +297,36 @@ public class RecipeControllerTest {
         CHANGE_PROCESSES.clear();
         CHANGE_PROCESSES.add(proc);
         recipe.setProcesses(CHANGE_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
+        assertRecipeWithInvalidInput();
+
+        recipe.setName(VALID_NAME);
+        recipe.setIngredients(VALID_INGREDIENTS);
+        recipe.setPreparations(VALID_PREPARATIONS);
+        recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(10001);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
+        assertRecipeWithInvalidInput();
+
+        recipe.setName(VALID_NAME);
+        recipe.setIngredients(VALID_INGREDIENTS);
+        recipe.setPreparations(VALID_PREPARATIONS);
+        recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(100001);
+        recipe.setCategory(VALID_CATEGORY);
+        assertRecipeWithInvalidInput();
+
+        recipe.setName(VALID_NAME);
+        recipe.setIngredients(VALID_INGREDIENTS);
+        recipe.setPreparations(VALID_PREPARATIONS);
+        recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(generateNLengthString(51));
         assertRecipeWithInvalidInput();
     }
 
