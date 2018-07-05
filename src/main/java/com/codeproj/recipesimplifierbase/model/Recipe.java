@@ -22,6 +22,15 @@ public class Recipe {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "calorie")
+    private Integer calorie;
+
+    @Column(name = "price")
+    private Integer price;
+
+    @Column(name = "category")
+    private String category;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="recipe_id")
     private Set<Ingredient> ingredients;
