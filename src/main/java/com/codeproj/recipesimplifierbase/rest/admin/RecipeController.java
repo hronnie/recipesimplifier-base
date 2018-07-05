@@ -43,4 +43,12 @@ public class RecipeController {
         return ResponseEntity.ok(newRecipe);
     }
 
+    @RequestMapping(value = "/recipe/ref/category", method = RequestMethod.GET)
+    public ResponseEntity<?> categoryRef(
+            HttpServletResponse response
+    )  {
+
+        return null;
+    }
+
 }
