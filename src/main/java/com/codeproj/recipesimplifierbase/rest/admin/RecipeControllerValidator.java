@@ -1,5 +1,6 @@
 package com.codeproj.recipesimplifierbase.rest.admin;
 
+import com.codeproj.recipesimplifierbase.common.RecipeCategory;
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
 import com.codeproj.recipesimplifierbase.model.Ingredient;
 import com.codeproj.recipesimplifierbase.model.Preparation;
@@ -37,6 +38,7 @@ public class RecipeControllerValidator {
                 || newRecipe.getPrice() < MIN_SIZE_PRICE
                 || newRecipe.getCategory().length() > MAX_SIZE_CATEGORY
                 || newRecipe.getCategory().length() < MIN_SIZE_CATEGORY
+                || !RecipeCategory.isCategoryValid(newRecipe.getCategory())
 
         );
     }

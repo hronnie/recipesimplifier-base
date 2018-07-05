@@ -49,7 +49,7 @@ public class RecipeControllerTest {
     Set<Preparation> CHANGE_PREPARATIONS = null;
 
     public static final String VALID_NAME = "Gulyas";
-    public static final String VALID_CATEGORY = "Leves";
+    public static final String VALID_CATEGORY = "soup";
     public static final Integer VALID_PRICE = 5000;
     public static final Integer VALID_CALORIE = 1000;
 
@@ -327,6 +327,18 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(generateNLengthString(51));
+        assertRecipeWithInvalidInput();
+    }
+
+    @Test
+    public void createWithInvalidCategory() {
+        recipe.setName(VALID_NAME);
+        recipe.setIngredients(VALID_INGREDIENTS);
+        recipe.setPreparations(VALID_PREPARATIONS);
+        recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory("random text");
         assertRecipeWithInvalidInput();
     }
 
