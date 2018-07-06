@@ -8,12 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 @RequestMapping( value = "/api", produces = MediaType.APPLICATION_JSON_VALUE )
@@ -24,7 +22,7 @@ public class RecipeController {
     @Autowired
     private RecipeRepository recipeRepository;
 
-    @RequestMapping(value = "/admin/newrecipe", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/recipe", method = RequestMethod.POST)
     public ResponseEntity<?> create(
             @RequestBody Recipe newRecipe,
             HttpServletResponse response
@@ -43,12 +41,17 @@ public class RecipeController {
         return ResponseEntity.ok(newRecipe);
     }
 
-    @RequestMapping(value = "/recipe/ref/category", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/recipe/byname/{name}", method = RequestMethod.GET)
     public ResponseEntity<?> categoryRef(
+            @PathVariable("name") String name,
             HttpServletResponse response
     )  {
-
-        return null;
+        List<Recipe> resultList = recipeRepository.findRecipesByNameStartsWith(name);
+        if (resultList == null || resultList.isEmpty()) {
+            logger.debug("There is no recipe with the given name is not a valid Recipe object, name already exist");
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(resultList);
     }
 
 }
