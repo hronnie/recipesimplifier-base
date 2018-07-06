@@ -25,7 +25,7 @@ public class RecipeProcess {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long processId;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 500)
     private String description;
 
     @Column(name = "duration")

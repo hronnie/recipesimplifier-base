@@ -25,7 +25,7 @@ public class Preparation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long preparationId;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 500)
     private String description;
 
     @Column(name = "duration")

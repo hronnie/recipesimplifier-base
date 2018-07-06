@@ -28,6 +28,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mobile</artifactId>
+			<version>2.0.0.M2</version>
 		</dependency>
 
 		<dependency>
@@ -78,10 +79,12 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.1</version>
+        </dependency>
+
 
 	</dependencies>
 
@@ -111,14 +114,6 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
 	</repositories>
 
 	<pluginRepositories>
