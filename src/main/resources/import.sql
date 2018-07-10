@@ -8,3 +8,37 @@ INSERT INTO authority (id, name) VALUES (2, 'ROLE_ADMIN');
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2);
+-- INSERT INTO Recipe (id, calorie, category, name, price) VALUES (1, 123, 'mainCouse', 'Gulyas', 1000);
+-- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (1, 'Krumpli', 1, 'kg', 1);
+-- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (2, 'tojas', 3, 'db', 1);
+-- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (3, 'liszt', 20, 'dkg', 1);
+-- INSERT INTO preparation (id, description, duration, recipe_id) VALUES (1, 'elokeszites1', 11, 1);
+-- INSERT INTO preparation (id, description, duration, recipe_id) VALUES (2, 'elokeszites2', 22, 1);
+-- INSERT INTO preparation (id, description, duration, recipe_id) VALUES (3, 'elokeszites3', 33, 1);
+-- INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (1, 'elkeszites1', 11, 1);
+-- INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (2, 'elkeszites2', 22, 1);
+-- INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (3, 'elkeszites3', 33, 1);
+
+
+-- INSERT INTO recipe (id, calorie, category, name, price) VALUES (2, 234, 'mainCouse', 'Brokkoli krem leves', 850);
+-- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (4, 'Krumpli', 1, 'kg', 2);
+-- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (5, 'tojas', 3, 'db', 2);
+-- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (6, 'liszt', 20, 'dkg', 2);
+-- INSERT INTO preparation (id, description, duration, recipe_id) VALUES (4, 'elokeszites1', 11, 2);
+-- INSERT INTO preparation (id, description, duration, recipe_id) VALUES (5, 'elokeszites2', 22, 2);
+-- INSERT INTO preparation (id, description, duration, recipe_id) VALUES (6, 'elokeszites3', 33, 2);
+-- INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (4, 'elkeszites1', 11, 2);
+-- INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (5, 'elkeszites2', 22, 2);
+-- INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (6, 'elkeszites3', 33, 2);
+--
+--
+-- INSERT INTO recipe (id, calorie, category, name, price) VALUES (3, 654, 'mainCouse', 'Gorog sali', 1200);
+-- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (7, 'Krumpli', 1, 'kg', 3);
+-- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (8, 'tojas', 3, 'db', 3);
+-- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (9, 'liszt', 20, 'dkg', 3);
+-- INSERT INTO preparation (id, description, duration, recipe_id) VALUES (7, 'elokeszites1', 11, 3);
+-- INSERT INTO preparation (id, description, duration, recipe_id) VALUES (8, 'elokeszites2', 22, 3);
+-- INSERT INTO preparation (id, description, duration, recipe_id) VALUES (9, 'elokeszites3', 33, 3);
+-- INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (7, 'elkeszites1', 11, 3);
+-- INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (8, 'elkeszites2', 22, 3);
+-- INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (9, 'elkeszites3', 33, 3);
