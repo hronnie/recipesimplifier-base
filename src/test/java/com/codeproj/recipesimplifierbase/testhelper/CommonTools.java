@@ -55,7 +55,7 @@ public class CommonTools {
         recipe.setName("Recipe name");
         recipe.setCategory("Recipe category");
         recipe.setPrice(3000);
-        recipe.setCalorie(333);
+        recipe.setCalorie("303");
         recipe.setIngredients(ingredients);
         recipe.setPreparations(preparations);
         recipe.setProcesses(recipeProcesses);

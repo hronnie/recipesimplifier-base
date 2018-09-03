@@ -23,7 +23,7 @@ public class Recipe {
     private String name;
 
     @Column(name = "calorie")
-    private Integer calorie;
+    private String calorie;
 
     @Column(name = "price")
     private Integer price;

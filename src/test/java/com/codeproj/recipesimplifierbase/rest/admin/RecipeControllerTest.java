@@ -48,7 +48,7 @@ public class RecipeControllerTest {
     public static final String VALID_NAME = "Gulyas";
     public static final String VALID_CATEGORY = "soup";
     public static final Integer VALID_PRICE = 5000;
-    public static final Integer VALID_CALORIE = 1000;
+    public static final String VALID_CALORIE = "This is a calorie info";
 
     @Before
     public void setUp() throws Exception {
@@ -303,7 +303,7 @@ public class RecipeControllerTest {
         recipe.setIngredients(VALID_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
         recipe.setProcesses(VALID_PROCESSES);
-        recipe.setCalorie(10001);
+        recipe.setCalorie(generateNLengthString(201));
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
         assertRecipeWithInvalidInput();

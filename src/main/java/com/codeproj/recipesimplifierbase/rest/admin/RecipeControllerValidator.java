@@ -22,7 +22,6 @@ public class RecipeControllerValidator {
                 || CollectionUtils.isEmpty(newRecipe.getIngredients())
                 || CollectionUtils.isEmpty(newRecipe.getPreparations())
                 || CollectionUtils.isEmpty(newRecipe.getProcesses())
-                || newRecipe.getCalorie() == null
                 || newRecipe.getPrice() == null
                 || StringUtils.isEmpty(newRecipe.getCategory())
 
@@ -32,8 +31,8 @@ public class RecipeControllerValidator {
                 || isIngredientsFail(newRecipe)
                 || isPreparationFail(newRecipe)
                 || isProcessFail(newRecipe)
-                || newRecipe.getCalorie() > MAX_SIZE_CALORIE
-                || newRecipe.getCalorie() < MIN_SIZE_CALORIE
+                || newRecipe.getCalorie().length() > MAX_SIZE_CALORIE
+                || newRecipe.getCalorie().length() < MIN_SIZE_CALORIE
                 || newRecipe.getPrice() > MAX_SIZE_PRICE
                 || newRecipe.getPrice() < MIN_SIZE_PRICE
                 || newRecipe.getCategory().length() > MAX_SIZE_CATEGORY
