@@ -1,8 +1,11 @@
 package com.codeproj.recipesimplifierbase.rest.admin;
 
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
+import com.codeproj.recipesimplifierbase.dto.RecipeDto;
 import com.codeproj.recipesimplifierbase.model.Recipe;
 import com.codeproj.recipesimplifierbase.model.UserTokenState;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Type;
 import java.util.List;
 
 @RestController
@@ -18,6 +22,7 @@ import java.util.List;
 public class RecipeController {
 
     private static final Logger logger = LoggerFactory.getLogger(RecipeController.class);
+    private static ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     private RecipeRepository recipeRepository;
@@ -51,7 +56,12 @@ public class RecipeController {
             logger.debug("There is no recipe with the given name is not a valid Recipe object, name already exist");
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(resultList);
+
+        Type listType = new TypeToken<List<RecipeDto>>() {}.getType();
+        List<RecipeDto> recipeDtoList = modelMapper.map(resultList, listType);
+
+
+        return ResponseEntity.ok(recipeDtoList);
     }
 
 }
