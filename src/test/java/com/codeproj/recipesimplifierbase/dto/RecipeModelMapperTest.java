@@ -1,19 +1,16 @@
 package com.codeproj.recipesimplifierbase.dto;
 
 import static org.junit.Assert.assertEquals;
+import static com.codeproj.recipesimplifierbase.testhelper.CommonTools.*;
 
 import com.codeproj.recipesimplifierbase.model.Ingredient;
 import com.codeproj.recipesimplifierbase.model.Preparation;
-import com.codeproj.recipesimplifierbase.model.Recipe;
 import com.codeproj.recipesimplifierbase.model.RecipeProcess;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -23,41 +20,6 @@ public class RecipeModelMapperTest {
 
     @Test
     public void checkRecipeMapping() {
-        Recipe recipe = new Recipe();
-
-        Ingredient ingredient = new Ingredient();
-        ingredient.setIngredientId(3l);
-        ingredient.setName("Test ingredient name");
-        ingredient.setQuantity(1);
-        ingredient.setUnit("Ingredient unit");
-        ingredient.setRecipe(recipe);
-        Set<Ingredient> ingredients = new HashSet<>();
-        ingredients.add(ingredient);
-
-        RecipeProcess recipeProcess = new RecipeProcess();
-        recipeProcess.setDescription("Recipe process description");
-        recipeProcess.setDuration(4);
-        recipeProcess.setProcessId(2l);
-        recipeProcess.setRecipe(recipe);
-        Set<RecipeProcess> recipeProcesses = new HashSet<>();
-        recipeProcesses.add(recipeProcess);
-
-        Preparation preparation = new Preparation();
-        preparation.setPreparationId(6l);
-        preparation.setDescription("Preparation description");
-        preparation.setDuration(8);
-        preparation.setRecipe(recipe);
-        Set<Preparation> preparations = new HashSet<>();
-        preparations.add(preparation);
-
-        recipe.setRecipeId(44l);
-        recipe.setName("Recipe name");
-        recipe.setCategory("Recipe category");
-        recipe.setPrice(3000);
-        recipe.setCalorie(333);
-        recipe.setIngredients(ingredients);
-        recipe.setPreparations(preparations);
-        recipe.setProcesses(recipeProcesses);
 
         RecipeDto recipeDto = modelMapper.map(recipe, RecipeDto.class);
 

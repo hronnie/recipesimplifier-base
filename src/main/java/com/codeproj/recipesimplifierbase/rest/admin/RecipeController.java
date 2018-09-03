@@ -27,7 +27,7 @@ public class RecipeController {
     @Autowired
     private RecipeRepository recipeRepository;
 
-    @RequestMapping(value = "/admin/recipe", method = RequestMethod.POST)
+    @PostMapping("/admin/recipe")
     public ResponseEntity<?> create(
             @RequestBody Recipe newRecipe,
             HttpServletResponse response
@@ -46,8 +46,8 @@ public class RecipeController {
         return ResponseEntity.ok(newRecipe);
     }
 
-    @RequestMapping(value = "/admin/recipe/byname/{name}", method = RequestMethod.GET)
-    public ResponseEntity<?> categoryRef(
+    @GetMapping("/admin/recipe/byname/{name}")
+    public ResponseEntity<?> getRecipeListByName(
             @PathVariable("name") String name,
             HttpServletResponse response
     )  {

@@ -8,24 +8,21 @@ import com.codeproj.recipesimplifierbase.model.RecipeProcess;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.codeproj.recipesimplifierbase.util.TestTools.generateNLengthString;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
-import static com.codeproj.recipesimplifierbase.util.TestTools.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
 public class RecipeControllerTest {
-
 
     RecipeController recipeController = null;
     Recipe recipe = null;
@@ -346,5 +343,4 @@ public class RecipeControllerTest {
         HttpStatus statusCode = recipeController.create(recipe, null).getStatusCode();
         assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
     }
-
 }
