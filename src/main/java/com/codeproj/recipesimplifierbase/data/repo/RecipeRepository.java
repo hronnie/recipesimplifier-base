@@ -20,6 +20,8 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
 
     public Recipe findRecipeByName(String name);
 
+    public List<Recipe> findRecipesByNameStartsWith(String name);
+
     default void create(Recipe newRecipe) {
         save(newRecipe);
     }

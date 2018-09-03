@@ -1,30 +1,33 @@
 package com.codeproj.recipesimplifierbase.rest.admin;
 
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
+import com.codeproj.recipesimplifierbase.dto.RecipeDto;
 import com.codeproj.recipesimplifierbase.model.Recipe;
 import com.codeproj.recipesimplifierbase.model.UserTokenState;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Type;
+import java.util.List;
 
 @RestController
 @RequestMapping( value = "/api", produces = MediaType.APPLICATION_JSON_VALUE )
 public class RecipeController {
 
     private static final Logger logger = LoggerFactory.getLogger(RecipeController.class);
+    private static ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     private RecipeRepository recipeRepository;
 
-    @RequestMapping(value = "/admin/newrecipe", method = RequestMethod.POST)
+    @PostMapping("/admin/recipe")
     public ResponseEntity<?> create(
             @RequestBody Recipe newRecipe,
             HttpServletResponse response
@@ -43,12 +46,22 @@ public class RecipeController {
         return ResponseEntity.ok(newRecipe);
     }
 
-    @RequestMapping(value = "/recipe/ref/category", method = RequestMethod.GET)
-    public ResponseEntity<?> categoryRef(
+    @GetMapping("/admin/recipe/byname/{name}")
+    public ResponseEntity<?> getRecipeListByName(
+            @PathVariable("name") String name,
             HttpServletResponse response
     )  {
+        List<Recipe> resultList = recipeRepository.findRecipesByNameStartsWith(name);
+        if (resultList == null || resultList.isEmpty()) {
+            logger.debug("There is no recipe with the given name is not a valid Recipe object, name already exist");
+            return ResponseEntity.noContent().build();
+        }
 
-        return null;
+        Type listType = new TypeToken<List<RecipeDto>>() {}.getType();
+        List<RecipeDto> recipeDtoList = modelMapper.map(resultList, listType);
+
+
+        return ResponseEntity.ok(recipeDtoList);
     }
 
 }

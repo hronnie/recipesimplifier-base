@@ -19,7 +19,5 @@ public class Constants {
 	public static final Integer MAX_SIZE_PRICE = 100000;
 	public static final Integer MIN_SIZE_CATEGORY = 1;
 	public static final Integer MAX_SIZE_CATEGORY = 50;
-//	public static final Integer MIN_SIZE_ = ;
-//	public static final Integer MAX_SIZE_ = ;
 
 }

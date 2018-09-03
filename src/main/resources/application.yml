@@ -8,6 +8,7 @@ spring:
     password: gastropw
     #platform: mysql
     initialization-mode: always
+    driver-class-name: com.mysql.jdbc.Driver
   jpa:
     show-sql: false
     database: mysql
