@@ -11,7 +11,7 @@ public class Constants {
 	public static final Integer MAX_SIZE_QUANTITY = 5000;
 	public static final Integer MIN_SIZE_DESCRIPTION = 1;
 	public static final Integer MAX_SIZE_DESCRIPTION = 500;
-	public static final Integer MIN_SIZE_DURATION = 1;
+	public static final Integer MIN_SIZE_DURATION = 0;
 	public static final Integer MAX_SIZE_DURATION = 10000;
 	public static final Integer MIN_SIZE_CALORIE = 1;
 	public static final Integer MAX_SIZE_CALORIE = 200;
