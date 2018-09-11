@@ -14,6 +14,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="Ingredient")
 public class IngredientDto {
 
+    public IngredientDto(String name, Integer quantity, String unit) {
+        this.name = name;
+        this.quantity = quantity;
+        this.unit = unit;
+    }
 
     @XmlElement(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)

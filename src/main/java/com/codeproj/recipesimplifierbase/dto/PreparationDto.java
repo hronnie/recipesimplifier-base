@@ -14,6 +14,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="Preparation")
 public class PreparationDto {
 
+    public PreparationDto(String description, Integer duration) {
+        this.description = description;
+        this.duration = duration;
+    }
 
     @XmlElement(name = "id")
     private Long preparationId;

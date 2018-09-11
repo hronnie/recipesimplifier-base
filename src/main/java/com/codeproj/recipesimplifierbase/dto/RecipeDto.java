@@ -1,19 +1,17 @@
 package com.codeproj.recipesimplifierbase.dto;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
-import java.util.List;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @XmlRootElement(name="Recipe")
 @XmlSeeAlso({IngredientDto.class, PreparationDto.class, RecipeProcessDto.class})
 public class RecipeDto {
@@ -25,7 +23,7 @@ public class RecipeDto {
     private String name;
 
     @XmlElement(name = "calorie")
-    private Integer calorie;
+    private String calorie;
 
     @XmlElement(name = "price")
     private Integer price;

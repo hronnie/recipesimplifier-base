@@ -26,8 +26,4 @@ public class RecipeImage {
     @Column(name = "mimetype")
     private String mimetype;
 
-    @Lob
-    @Column(name="image_content")
-    private byte[] imageContent;
-
 }

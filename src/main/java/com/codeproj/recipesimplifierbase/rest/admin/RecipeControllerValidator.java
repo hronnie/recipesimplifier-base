@@ -35,6 +35,7 @@ public class RecipeControllerValidator {
                 || isIngredientsFail(newRecipe)
                 || isPreparationFail(newRecipe)
                 || isProcessFail(newRecipe)
+                || newRecipe.getCalorie() == null
                 || newRecipe.getCalorie().length() > MAX_SIZE_CALORIE
                 || newRecipe.getCalorie().length() < MIN_SIZE_CALORIE
                 || newRecipe.getPrice() > MAX_SIZE_PRICE

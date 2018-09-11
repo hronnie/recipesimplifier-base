@@ -4,6 +4,7 @@ import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
 import com.codeproj.recipesimplifierbase.dto.RecipeDto;
 import com.codeproj.recipesimplifierbase.model.Recipe;
 import com.codeproj.recipesimplifierbase.model.UserTokenState;
+import com.codeproj.recipesimplifierbase.service.FileStorageService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Type;
@@ -27,22 +29,29 @@ public class RecipeController {
     @Autowired
     private RecipeRepository recipeRepository;
 
+    @Autowired
+    private FileStorageService fileStorageService;
+
     @PostMapping("/admin/recipe")
     public ResponseEntity<?> create(
-            @RequestBody Recipe newRecipe,
+            @RequestBody RecipeDto newRecipe,
             HttpServletResponse response
     )  {
         if (!RecipeControllerValidator.create(newRecipe)) {
             logger.debug("newRecipe is not a valid Recipe object");
             return ResponseEntity.unprocessableEntity().build();
         }
+
         Recipe exsitingRecipe = recipeRepository.findRecipeByName(newRecipe.getName());
         if (exsitingRecipe != null) {
             logger.debug("newRecipe is not a valid Recipe object, name already exist");
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        recipeRepository.create(newRecipe);
+        ModelMapper modelMapper = new ModelMapper();
+        Recipe newRecipeModel = modelMapper.map(newRecipe, Recipe.class);
+
+        recipeRepository.create(newRecipeModel);
         return ResponseEntity.ok(newRecipe);
     }
 

@@ -14,6 +14,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="RecipeProcess")
 public class RecipeProcessDto {
 
+    public RecipeProcessDto(String description, Integer duration) {
+        this.description = description;
+        this.duration = duration;
+    }
 
     @XmlElement(name = "id")
     private Long processId;

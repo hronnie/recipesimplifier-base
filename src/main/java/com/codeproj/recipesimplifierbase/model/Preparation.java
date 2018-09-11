@@ -12,11 +12,6 @@ import javax.persistence.*;
 @Table(name="Preparation")
 public class Preparation {
 
-    public Preparation(String description, Integer duration) {
-        this.description = description;
-        this.duration = duration;
-    }
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
