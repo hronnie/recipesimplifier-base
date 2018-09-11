@@ -2,6 +2,10 @@ package com.codeproj.recipesimplifierbase.rest.admin;
 
 import com.codeproj.recipesimplifierbase.common.RecipeCategory;
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
+import com.codeproj.recipesimplifierbase.dto.IngredientDto;
+import com.codeproj.recipesimplifierbase.dto.PreparationDto;
+import com.codeproj.recipesimplifierbase.dto.RecipeDto;
+import com.codeproj.recipesimplifierbase.dto.RecipeProcessDto;
 import com.codeproj.recipesimplifierbase.model.Ingredient;
 import com.codeproj.recipesimplifierbase.model.Preparation;
 import com.codeproj.recipesimplifierbase.model.Recipe;
@@ -16,7 +20,7 @@ public class RecipeControllerValidator {
     @Autowired
     private RecipeRepository recipeRepository;
 
-    public static boolean create(Recipe newRecipe) {
+    public static boolean create(RecipeDto newRecipe) {
         return !(newRecipe == null
                 || StringUtils.isEmpty(newRecipe.getName())
                 || CollectionUtils.isEmpty(newRecipe.getIngredients())
@@ -44,8 +48,8 @@ public class RecipeControllerValidator {
 
 
 
-    private static boolean isIngredientsFail(Recipe newRecipe) {
-        for (Ingredient ing : newRecipe.getIngredients()) {
+    private static boolean isIngredientsFail(RecipeDto newRecipe) {
+        for (IngredientDto ing : newRecipe.getIngredients()) {
             if (ing.getName().length() > MAX_SIZE_NAME
                     || ing.getName().length() < MIN_SIZE_NAME
                     || ing.getUnit().length() > MAX_SIZE_UNIT
@@ -59,8 +63,8 @@ public class RecipeControllerValidator {
         return false;
     }
 
-    private static boolean isPreparationFail(Recipe newRecipe) {
-        for (Preparation prep : newRecipe.getPreparations()) {
+    private static boolean isPreparationFail(RecipeDto newRecipe) {
+        for (PreparationDto prep : newRecipe.getPreparations()) {
             if (prep.getDescription().length() > MAX_SIZE_DESCRIPTION
                     || prep.getDescription().length() < MIN_SIZE_DESCRIPTION
                     || prep.getDuration() > MAX_SIZE_DURATION
@@ -72,8 +76,8 @@ public class RecipeControllerValidator {
         return false;
     }
 
-    private static boolean isProcessFail(Recipe newRecipe) {
-        for (RecipeProcess process : newRecipe.getProcesses()) {
+    private static boolean isProcessFail(RecipeDto newRecipe) {
+        for (RecipeProcessDto process : newRecipe.getProcesses()) {
             if (process.getDescription().length() > MAX_SIZE_DESCRIPTION
                     || process.getDescription().length() < MIN_SIZE_DESCRIPTION
                     || process.getDuration() > MAX_SIZE_DURATION
