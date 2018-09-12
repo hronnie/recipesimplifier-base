@@ -7,19 +7,23 @@ import com.codeproj.recipesimplifierbase.rest.admin.RecipeController;
 import com.codeproj.recipesimplifierbase.rest.validator.IngredientInfoValidator;
 import com.codeproj.recipesimplifierbase.rest.validator.RecipeControllerValidator;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
-@RequestMapping( value = "/api/ingredientinfo", produces = MediaType.APPLICATION_JSON_VALUE )
+@RequestMapping( value = "/api/admin/ingredientinfo", produces = MediaType.APPLICATION_JSON_VALUE )
 public class IngredientInfoController {
 
     @Autowired
@@ -28,7 +32,7 @@ public class IngredientInfoController {
     private static final Logger logger = LoggerFactory.getLogger(RecipeController.class);
     private static ModelMapper modelMapper = new ModelMapper();
 
-    @GetMapping("/{name}")
+    @GetMapping("byname/{name}")
     public ResponseEntity<?> getIngredientInfoByName(
             @PathVariable("name") String name,
             HttpServletResponse response
@@ -62,6 +66,18 @@ public class IngredientInfoController {
         }
 
         return ResponseEntity.ok(ingredientInfo);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<?> getAllIngredientInfo(
+            HttpServletResponse response
+    )  {
+
+        ModelMapper modelMapper = new ModelMapper();
+        List<IngredientInfo> dbResult = ingredientInfoRepository.findAll();
+        java.lang.reflect.Type targetListType = new TypeToken<List<IngredientInfoDto>>() {}.getType();
+        List<IngredientInfoDto> result = modelMapper.map(dbResult, targetListType);
+        return ResponseEntity.ok(result);
     }
 
     @PostMapping("/")
