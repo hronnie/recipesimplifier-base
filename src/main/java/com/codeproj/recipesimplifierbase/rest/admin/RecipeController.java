@@ -3,7 +3,7 @@ package com.codeproj.recipesimplifierbase.rest.admin;
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
 import com.codeproj.recipesimplifierbase.dto.RecipeDto;
 import com.codeproj.recipesimplifierbase.model.Recipe;
-import com.codeproj.recipesimplifierbase.model.UserTokenState;
+import com.codeproj.recipesimplifierbase.rest.validator.RecipeControllerValidator;
 import com.codeproj.recipesimplifierbase.service.FileStorageService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -13,14 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Type;
+import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping( value = "/api", produces = MediaType.APPLICATION_JSON_VALUE )
+@RequestMapping( value = "/api/admin/recipe", produces = MediaType.APPLICATION_JSON_VALUE )
 public class RecipeController {
 
     private static final Logger logger = LoggerFactory.getLogger(RecipeController.class);
@@ -32,7 +33,7 @@ public class RecipeController {
     @Autowired
     private FileStorageService fileStorageService;
 
-    @PostMapping("/admin/recipe")
+    @PostMapping("/")
     public ResponseEntity<?> create(
             @RequestBody RecipeDto newRecipe,
             HttpServletResponse response
@@ -51,11 +52,13 @@ public class RecipeController {
         ModelMapper modelMapper = new ModelMapper();
         Recipe newRecipeModel = modelMapper.map(newRecipe, Recipe.class);
 
-        recipeRepository.create(newRecipeModel);
+        Recipe result = recipeRepository.save(newRecipeModel);
+        URI location = ServletUriComponentsBuilder.fromCurrentContextPath().
+                path("byname/{name}").buildAndExpand(result.getName()).toUri();
         return ResponseEntity.ok(newRecipe);
     }
 
-    @GetMapping("/admin/recipe/byname/{name}")
+    @GetMapping("/byname/{name}")
     public ResponseEntity<?> getRecipeListByName(
             @PathVariable("name") String name,
             HttpServletResponse response

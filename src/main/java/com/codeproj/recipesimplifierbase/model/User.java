@@ -2,6 +2,7 @@ package com.codeproj.recipesimplifierbase.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AccessLevel;
@@ -27,7 +28,7 @@ import java.util.List;
 
 @Entity
 @Table(name="USERS")
-@Getter @Setter
+@Data
 public class User implements UserDetails {
 
 	private static final long serialVersionUID = -9042501670127664297L;

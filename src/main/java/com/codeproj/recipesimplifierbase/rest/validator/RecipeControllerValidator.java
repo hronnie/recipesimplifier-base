@@ -1,4 +1,4 @@
-package com.codeproj.recipesimplifierbase.rest.admin;
+package com.codeproj.recipesimplifierbase.rest.validator;
 
 import com.codeproj.recipesimplifierbase.common.RecipeCategory;
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
@@ -16,9 +16,6 @@ import org.springframework.util.StringUtils;
 import static com.codeproj.recipesimplifierbase.common.Constants.*;
 
 public class RecipeControllerValidator {
-
-    @Autowired
-    private RecipeRepository recipeRepository;
 
     public static boolean create(RecipeDto newRecipe) {
         return !(newRecipe == null
@@ -46,8 +43,6 @@ public class RecipeControllerValidator {
 
         );
     }
-
-
 
     private static boolean isIngredientsFail(RecipeDto newRecipe) {
         for (IngredientDto ing : newRecipe.getIngredients()) {
@@ -89,6 +84,5 @@ public class RecipeControllerValidator {
         }
         return false;
     }
-
 
 }

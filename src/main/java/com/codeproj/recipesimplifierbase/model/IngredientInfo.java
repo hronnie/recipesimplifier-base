@@ -8,18 +8,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="RecipeImage")
-public class RecipeImage {
+@Table(name="IngredientInfo")
+public class IngredientInfo {
 
     @Id
-    @GeneratedValue
     @Column(name = "id")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long ingredientInfoId;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "mimetype")
-    private String mimetype;
+    @Column(name = "description", length = 1000)
+    private String description;
 
 }

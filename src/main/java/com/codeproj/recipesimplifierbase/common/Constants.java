@@ -20,4 +20,6 @@ public class Constants {
 	public static final Integer MIN_SIZE_CATEGORY = 1;
 	public static final Integer MAX_SIZE_CATEGORY = 50;
 
+	public static final Integer MAX_SIZE_INGREDIENT_INFO_NAME = 25;
+	public static final Integer MAX_SIZE_INGREDIENT_INFO_DESCRIPTION = 1000;
 }
