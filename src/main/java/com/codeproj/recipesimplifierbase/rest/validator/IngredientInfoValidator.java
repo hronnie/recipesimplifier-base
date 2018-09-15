@@ -24,7 +24,6 @@ public class IngredientInfoValidator {
 
     public static boolean create(IngredientInfoDto ingredientInfoDto) {
         return isIngredientInfoNameValid(ingredientInfoDto.getName())
-                && isIngredientInfoIdValid(ingredientInfoDto.getIngredientInfoId())
                 && isIngredientInfoDescriptionValid(ingredientInfoDto.getDescription());
     }
 
@@ -48,6 +47,8 @@ public class IngredientInfoValidator {
     }
 
     public static boolean update(IngredientInfoDto ingredientInfoDto) {
-        return create(ingredientInfoDto);
+        return isIngredientInfoNameValid(ingredientInfoDto.getName())
+                && isIngredientInfoIdValid(ingredientInfoDto.getIngredientInfoId())
+                && isIngredientInfoDescriptionValid(ingredientInfoDto.getDescription());
     }
 }
