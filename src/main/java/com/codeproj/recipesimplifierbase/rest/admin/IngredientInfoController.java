@@ -22,6 +22,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping( value = "/api/admin/ingredientinfo", produces = MediaType.APPLICATION_JSON_VALUE )
 public class IngredientInfoController {
