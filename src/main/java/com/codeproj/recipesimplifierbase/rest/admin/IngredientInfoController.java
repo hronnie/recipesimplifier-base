@@ -51,7 +51,7 @@ public class IngredientInfoController {
         return ResponseEntity.ok(ingredientInfo);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("byid/{id}")
     public ResponseEntity<?> getIngredientInfoById(
             @PathVariable("id") Long id,
             HttpServletResponse response
@@ -149,7 +149,7 @@ public class IngredientInfoController {
         return ResponseEntity.ok("Delete was successful with it: " + indgredientId);
     }
 
-    @DeleteMapping("/{name}")
+    @DeleteMapping("byname/{name}")
     public ResponseEntity<?> deleteByName(
             @PathVariable("id") String name,
             HttpServletResponse response
