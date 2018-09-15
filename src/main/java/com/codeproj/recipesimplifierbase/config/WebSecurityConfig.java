@@ -89,7 +89,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(
                 HttpMethod.POST,
-                "/auth/login"
+                "/auth/login",
+                "/api/**"
+       );
+        web.ignoring().antMatchers(
+                HttpMethod.DELETE,
+                "/api/**"
+       );
+        web.ignoring().antMatchers(
+                HttpMethod.PUT,
+                "/api/**"
        );
         web.ignoring().antMatchers(
                 HttpMethod.OPTIONS,
@@ -103,7 +112,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/favicon.ico",
                 "/**/*.html",
                 "/**/*.css",
-                "/**/*.js"
+                "/**/*.js",
+                "/api/**"
            );
     }
     
