@@ -1,6 +1,7 @@
 package com.codeproj.recipesimplifierbase.rest.admin;
 
 import com.codeproj.recipesimplifierbase.data.repo.IngredientInfoRepository;
+import com.codeproj.recipesimplifierbase.dto.GeneralRestResponse;
 import com.codeproj.recipesimplifierbase.dto.IngredientInfoDto;
 import com.codeproj.recipesimplifierbase.model.IngredientInfo;
 import com.codeproj.recipesimplifierbase.rest.admin.RecipeController;
@@ -146,7 +147,7 @@ public class IngredientInfoController {
 
         ingredientInfoRepository.deleteByIngredientInfoId(indgredientId);
 
-        return ResponseEntity.ok("Delete was successful with it: " + indgredientId); //TODO: return with json
+        return ResponseEntity.ok(new GeneralRestResponse("Delete was successful with it: " + indgredientId, true));
     }
 
     @DeleteMapping("byname/{name}")
