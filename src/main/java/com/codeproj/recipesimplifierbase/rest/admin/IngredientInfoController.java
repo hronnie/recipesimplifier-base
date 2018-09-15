@@ -100,7 +100,7 @@ public class IngredientInfoController {
         ModelMapper modelMapper = new ModelMapper();
         IngredientInfo result = ingredientInfoRepository.save(modelMapper.map(ingredientInfoDto, IngredientInfo.class));
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().
-                path("/{id}").buildAndExpand(result.getIngredientInfoId()).toUri();
+                path("/api/admin/ingredientinfo/{id}").buildAndExpand(result.getIngredientInfoId()).toUri();
         return ResponseEntity.ok(location);
     }
 
@@ -146,7 +146,7 @@ public class IngredientInfoController {
 
         ingredientInfoRepository.deleteByIngredientInfoId(indgredientId);
 
-        return ResponseEntity.ok("Delete was successful with it: " + indgredientId);
+        return ResponseEntity.ok("Delete was successful with it: " + indgredientId); //TODO: return with json
     }
 
     @DeleteMapping("byname/{name}")
