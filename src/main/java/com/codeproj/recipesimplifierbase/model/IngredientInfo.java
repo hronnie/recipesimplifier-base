@@ -3,6 +3,7 @@ package com.codeproj.recipesimplifierbase.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -21,5 +22,9 @@ public class IngredientInfo {
 
     @Column(name = "description", length = 1000)
     private String description;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="ingredient_info_id")
+    private Set<Ingredient> ingredients;
 
 }

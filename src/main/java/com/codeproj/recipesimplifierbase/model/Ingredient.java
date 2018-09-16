@@ -28,4 +28,7 @@ public class Ingredient {
     @ManyToOne
     private Recipe recipe;
 
+    @ManyToOne
+    private IngredientInfo ingredientInfo;
+
 }
