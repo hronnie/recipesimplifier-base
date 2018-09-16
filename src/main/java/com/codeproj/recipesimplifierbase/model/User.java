@@ -28,7 +28,8 @@ import java.util.List;
 
 @Entity
 @Table(name="USERS")
-@Data
+@Getter
+@Setter
 public class User implements UserDetails {
 
 	private static final long serialVersionUID = -9042501670127664297L;
