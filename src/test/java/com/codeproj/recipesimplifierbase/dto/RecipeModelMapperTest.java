@@ -33,6 +33,7 @@ public class RecipeModelMapperTest {
         assertEquals(ingredientModel.getName(), ingredient.getName());
         assertEquals(ingredientModel.getQuantity(), ingredient.getQuantity());
         assertEquals(ingredientModel.getUnit(), ingredient.getUnit());
+        assertEquals(ingredientModel.getIngredientInfo(), ingredient.getIngredientInfo());
 
         Preparation preparationModel = recipe.getPreparations().iterator().next();
         PreparationDto preparationDto = recipeDto.getPreparations().iterator().next();
