@@ -12,10 +12,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="Ingredient")
 public class IngredientDto {
 
-    public IngredientDto(String name, Integer quantity, String unit) {
+    public IngredientDto(String name, Integer quantity, String unit, Long ingredientInfoId) {
         this.name = name;
         this.quantity = quantity;
         this.unit = unit;
+        this.ingredientInfoId = ingredientInfoId;
     }
 
     @XmlElement(name = "id")
@@ -30,5 +31,8 @@ public class IngredientDto {
 
     @XmlElement(name = "unit")
     private String unit;
+
+    @XmlElement(name = "ingredientInfoId")
+    private Long ingredientInfoId;
 
 }

@@ -60,16 +60,6 @@ public class IngredientInfoControllerTest {
 
     @Test
     public void creatIngredientInfoTest() {
-        ingredientInfoDto.setIngredientInfoId(null);
-        ingredientInfoDto.setName("Name");
-        ingredientInfoDto.setDescription("valid ");
-        assertCreateIngredientWithInvalidInput();
-
-        ingredientInfoDto.setIngredientInfoId(0l);
-        ingredientInfoDto.setName("Name");
-        ingredientInfoDto.setDescription("valid ");
-        assertCreateIngredientWithInvalidInput();
-
         ingredientInfoDto.setIngredientInfoId(55l);
         ingredientInfoDto.setName("");
         ingredientInfoDto.setDescription("valid ");

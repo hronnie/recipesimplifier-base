@@ -210,7 +210,7 @@ public class RecipeControllerTest {
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
-        IngredientDto ing = new IngredientDto(generateNLengthString(41), 1, "unit");
+        IngredientDto ing = new IngredientDto(generateNLengthString(41), 1, "unit", 4l);
         CHANGE_INGREDIENTS.add(ing);
         recipe.setIngredients(CHANGE_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
@@ -222,7 +222,7 @@ public class RecipeControllerTest {
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
-        ing = new IngredientDto(VALID_NAME, 5001, "unit");
+        ing = new IngredientDto(VALID_NAME, 5001, "unit", 5l);
         CHANGE_INGREDIENTS.clear();
         CHANGE_INGREDIENTS.add(ing);
         recipe.setIngredients(CHANGE_INGREDIENTS);
@@ -235,7 +235,7 @@ public class RecipeControllerTest {
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
-        ing = new IngredientDto(VALID_NAME, 33, generateNLengthString(21));
+        ing = new IngredientDto(VALID_NAME, 33, generateNLengthString(21), 6l);
         CHANGE_INGREDIENTS.clear();
         CHANGE_INGREDIENTS.add(ing);
         recipe.setIngredients(CHANGE_INGREDIENTS);
