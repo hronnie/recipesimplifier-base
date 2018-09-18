@@ -4,14 +4,14 @@ import static com.codeproj.recipesimplifierbase.common.Constants.*;
 import com.codeproj.recipesimplifierbase.dto.IngredientInfoDto;
 import org.springframework.util.StringUtils;
 
-public class IngredientInfoValidator {
+public class IngredientInfoValidator extends ValidatorBase {
 
     public static boolean getIngredientInfoByName(String name) {
         return isIngredientInfoNameValid(name);
     }
 
     public static boolean deleteByIngredientInfoId(Long ingredientId) {
-        return isIngredientInfoIdValid(ingredientId);
+        return isEntityIdValid(ingredientId);
     }
 
     public static boolean deleteByName(String name) {
@@ -19,7 +19,7 @@ public class IngredientInfoValidator {
     }
 
     public static boolean getIngredientInfoById(Long ingredientId) {
-        return isIngredientInfoIdValid(ingredientId);
+        return isEntityIdValid(ingredientId);
     }
 
     public static boolean create(IngredientInfoDto ingredientInfoDto) {
@@ -33,12 +33,6 @@ public class IngredientInfoValidator {
                 || name.length() > MAX_SIZE_INGREDIENT_INFO_NAME);
     }
 
-    private static boolean isIngredientInfoIdValid(Long ingredientId) {
-        return !(ingredientId == null
-                || ingredientId < 1
-        );
-    }
-
     private static boolean isIngredientInfoDescriptionValid(String description) {
         return !(description == null
                 || StringUtils.isEmpty(description)
@@ -48,7 +42,8 @@ public class IngredientInfoValidator {
 
     public static boolean update(IngredientInfoDto ingredientInfoDto) {
         return isIngredientInfoNameValid(ingredientInfoDto.getName())
-                && isIngredientInfoIdValid(ingredientInfoDto.getIngredientInfoId())
+                && isEntityIdValid(ingredientInfoDto.getIngredientInfoId())
                 && isIngredientInfoDescriptionValid(ingredientInfoDto.getDescription());
     }
+
 }

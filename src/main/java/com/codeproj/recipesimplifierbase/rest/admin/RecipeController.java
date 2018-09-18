@@ -1,6 +1,7 @@
 package com.codeproj.recipesimplifierbase.rest.admin;
 
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
+import com.codeproj.recipesimplifierbase.dto.GeneralRestResponse;
 import com.codeproj.recipesimplifierbase.dto.RecipeDto;
 import com.codeproj.recipesimplifierbase.model.Recipe;
 import com.codeproj.recipesimplifierbase.rest.validator.RecipeControllerValidator;
@@ -20,6 +21,7 @@ import java.lang.reflect.Type;
 import java.net.URI;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping( value = "/api/admin/recipe", produces = MediaType.APPLICATION_JSON_VALUE )
 public class RecipeController {
@@ -56,6 +58,55 @@ public class RecipeController {
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().
                 path("byname/{name}").buildAndExpand(result.getName()).toUri();
         return ResponseEntity.ok(newRecipe);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<?> update(
+            @RequestBody RecipeDto updateRecipe,
+            HttpServletResponse response
+    )  {
+        if (!RecipeControllerValidator.update(updateRecipe)) {
+            logger.debug("updateRecipe is not a valid Recipe object");
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        Recipe exsitingRecipe = recipeRepository.findRecipeByRecipeId(updateRecipe.getRecipeId());
+        if (exsitingRecipe == null) {
+            logger.debug("newRecipe is not a valid Recipe object, recipe doesn't exist");
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        ModelMapper modelMapper = new ModelMapper();
+        Recipe newRecipeModel = modelMapper.map(updateRecipe, Recipe.class);
+
+        Recipe result = recipeRepository.save(newRecipeModel);
+        URI location = ServletUriComponentsBuilder.fromCurrentContextPath().
+                path("byname/{name}").buildAndExpand(result.getName()).toUri();
+        return ResponseEntity.ok(updateRecipe);
+    }
+
+    @DeleteMapping("/{recipeId}")
+    public ResponseEntity<?> delete(
+            @PathVariable("id") Long recipeId,
+            HttpServletResponse response
+    )  {
+        if (!RecipeControllerValidator.delete(recipeId)) {
+            logger.debug("recipeId is not a valid Recipe id");
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        Recipe exsitingRecipe = recipeRepository.findRecipeByRecipeId(recipeId);
+        if (exsitingRecipe == null) {
+            logger.debug("newRecipe is not a valid Recipe object, recipe doesn't exist");
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        ModelMapper modelMapper = new ModelMapper();
+        Recipe deleteRecipeModel = modelMapper.map(exsitingRecipe, Recipe.class);
+
+        recipeRepository.delete(deleteRecipeModel);
+
+        return ResponseEntity.ok(new GeneralRestResponse("Delete was successful with " + recipeId, true));
     }
 
     @GetMapping("/byname/{name}")

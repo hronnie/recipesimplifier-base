@@ -86,7 +86,8 @@ public class RecipeControllerTest {
     }
 
     @Test
-    public void createWithMandatoryParameterTest() {
+    public void createAndUpdateWithMandatoryParameterTest() {
+        recipe.setRecipeId(44l);
         recipe.setName("");
         recipe.setIngredients(VALID_INGREDIENTS);
         recipe.setPreparations(VALID_PREPARATIONS);
@@ -94,7 +95,8 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(EMPTY_INGREDIENTS);
@@ -103,7 +105,8 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -112,7 +115,8 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -121,7 +125,8 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -130,7 +135,8 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory("");
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
 
 
         recipe.setName(null);
@@ -140,7 +146,8 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(null);
@@ -149,7 +156,8 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -158,7 +166,8 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -167,7 +176,8 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -176,7 +186,8 @@ public class RecipeControllerTest {
         recipe.setCalorie(null);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -185,7 +196,8 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(null);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -194,7 +206,28 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(null);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
+        assertUpdateRecipeWithInvalidInput();
+
+        recipe.setRecipeId(null);
+        recipe.setName(VALID_NAME);
+        recipe.setIngredients(VALID_INGREDIENTS);
+        recipe.setPreparations(VALID_PREPARATIONS);
+        recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
+        assertUpdateRecipeWithInvalidInput();
+
+        recipe.setRecipeId(0l);
+        recipe.setName(VALID_NAME);
+        recipe.setIngredients(VALID_INGREDIENTS);
+        recipe.setPreparations(VALID_PREPARATIONS);
+        recipe.setProcesses(VALID_PROCESSES);
+        recipe.setCalorie(VALID_CALORIE);
+        recipe.setPrice(VALID_PRICE);
+        recipe.setCategory(VALID_CATEGORY);
+        assertUpdateRecipeWithInvalidInput();
     }
 
     @Test
@@ -206,7 +239,7 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -218,7 +251,7 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -231,7 +264,7 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -244,7 +277,7 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -256,7 +289,7 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -268,7 +301,7 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -280,7 +313,7 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -292,7 +325,7 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -301,7 +334,7 @@ public class RecipeControllerTest {
         recipe.setCalorie(generateNLengthString(201));
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -310,7 +343,7 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(100001);
         recipe.setCategory(VALID_CATEGORY);
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
 
         recipe.setName(VALID_NAME);
         recipe.setIngredients(VALID_INGREDIENTS);
@@ -319,7 +352,7 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory(generateNLengthString(51));
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
     }
 
     @Test
@@ -331,11 +364,29 @@ public class RecipeControllerTest {
         recipe.setCalorie(VALID_CALORIE);
         recipe.setPrice(VALID_PRICE);
         recipe.setCategory("random text");
-        assertRecipeWithInvalidInput();
+        assertCreateRecipeWithInvalidInput();
     }
 
-    private void assertRecipeWithInvalidInput() {
+    @Test
+    public void deleteRecipe() {
+        recipe.setRecipeId(null);
+        assertDeleteRecipeWithInvalidInput();
+        recipe.setRecipeId(0l);
+        assertDeleteRecipeWithInvalidInput();
+    }
+
+    private void assertCreateRecipeWithInvalidInput() {
         HttpStatus statusCode = recipeController.create(recipe, null).getStatusCode();
+        assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
+    }
+
+    private void assertUpdateRecipeWithInvalidInput() {
+        HttpStatus statusCode = recipeController.update(recipe, null).getStatusCode();
+        assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
+    }
+
+    private void assertDeleteRecipeWithInvalidInput() {
+        HttpStatus statusCode = recipeController.delete(recipe.getRecipeId(), null).getStatusCode();
         assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
     }
 }

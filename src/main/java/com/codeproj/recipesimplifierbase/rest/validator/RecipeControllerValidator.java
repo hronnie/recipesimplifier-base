@@ -15,7 +15,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import static com.codeproj.recipesimplifierbase.common.Constants.*;
 
-public class RecipeControllerValidator {
+public class RecipeControllerValidator extends ValidatorBase {
 
     public static boolean create(RecipeDto newRecipe) {
         return !(newRecipe == null
@@ -44,45 +44,12 @@ public class RecipeControllerValidator {
         );
     }
 
-    private static boolean isIngredientsFail(RecipeDto newRecipe) {
-        for (IngredientDto ing : newRecipe.getIngredients()) {
-            if (ing.getName().length() > MAX_SIZE_NAME
-                    || ing.getName().length() < MIN_SIZE_NAME
-                    || ing.getUnit().length() > MAX_SIZE_UNIT
-                    || ing.getUnit().length() < MIN_SIZE_UNIT
-                    || ing.getQuantity() > MAX_SIZE_QUANTITY
-                    || ing.getQuantity() < MIN_SIZE_QUANTITY
-                    ) {
-                return true;
-            }
-        }
-        return false;
+    public static boolean update(RecipeDto updateRecipe) {
+        return create(updateRecipe) && isEntityIdValid(updateRecipe.getRecipeId());
     }
 
-    private static boolean isPreparationFail(RecipeDto newRecipe) {
-        for (PreparationDto prep : newRecipe.getPreparations()) {
-            if (prep.getDescription().length() > MAX_SIZE_DESCRIPTION
-                    || prep.getDescription().length() < MIN_SIZE_DESCRIPTION
-                    || prep.getDuration() > MAX_SIZE_DURATION
-                    || prep.getDuration() < MIN_SIZE_DURATION
-                    ) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean isProcessFail(RecipeDto newRecipe) {
-        for (RecipeProcessDto process : newRecipe.getProcesses()) {
-            if (process.getDescription().length() > MAX_SIZE_DESCRIPTION
-                    || process.getDescription().length() < MIN_SIZE_DESCRIPTION
-                    || process.getDuration() > MAX_SIZE_DURATION
-                    || process.getDuration() < MIN_SIZE_DURATION
-                    ) {
-                return true;
-            }
-        }
-        return false;
+    public static boolean delete(Long recipeId) {
+        return isEntityIdValid(recipeId);
     }
 
 }
