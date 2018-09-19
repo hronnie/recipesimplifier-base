@@ -1,5 +1,8 @@
 package com.codeproj.recipesimplifierbase.rest.admin;
 
+import com.codeproj.recipesimplifierbase.data.repo.IngredientRepository;
+import com.codeproj.recipesimplifierbase.data.repo.PreparationRepository;
+import com.codeproj.recipesimplifierbase.data.repo.RecipeProcessRepository;
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
 import com.codeproj.recipesimplifierbase.dto.GeneralRestResponse;
 import com.codeproj.recipesimplifierbase.dto.RecipeDto;
@@ -34,6 +37,16 @@ public class RecipeController {
 
     @Autowired
     private FileStorageService fileStorageService;
+
+    @Autowired
+    private IngredientRepository ingredientRepository;
+
+    @Autowired
+    private PreparationRepository preparationRepository;
+
+    @Autowired
+    private RecipeProcessRepository recipeProcessRepository;
+
 
     @PostMapping("/")
     public ResponseEntity<?> create(
@@ -82,16 +95,25 @@ public class RecipeController {
         updateRecipeModel.getIngredients().stream().forEach(
                 ingredient -> {
                     ingredient.setRecipe(updateRecipeModel);
+                    if (!exsitingRecipe.getIngredients().contains(ingredient)) {
+                        ingredientRepository.save(ingredient);
+                    }
                 }
         );
         updateRecipeModel.getPreparations().stream().forEach(
                 preparation -> {
                     preparation.setRecipe(updateRecipeModel);
+                    if (!exsitingRecipe.getPreparations().contains(preparation)) {
+                        preparationRepository.save(preparation);
+                    }
                 }
         );
         updateRecipeModel.getProcesses().stream().forEach(
                 process -> {
                     process.setRecipe(updateRecipeModel);
+                    if (!exsitingRecipe.getProcesses().contains(process)) {
+                        recipeProcessRepository.save(process);
+                    }
                 }
         );
 
