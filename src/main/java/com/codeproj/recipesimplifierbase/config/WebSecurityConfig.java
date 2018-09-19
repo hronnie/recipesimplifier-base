@@ -90,15 +90,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers(
                 HttpMethod.POST,
                 "/auth/login",
-                "/api/**"
+                "/**"
        );
         web.ignoring().antMatchers(
                 HttpMethod.DELETE,
-                "/api/**"
+                "/**"
        );
         web.ignoring().antMatchers(
                 HttpMethod.PUT,
-                "/api/**"
+                "/**"
        );
         web.ignoring().antMatchers(
                 HttpMethod.OPTIONS,
@@ -113,7 +113,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/**/*.html",
                 "/**/*.css",
                 "/**/*.js",
-                "/api/**"
+                "/**"
            );
     }
     

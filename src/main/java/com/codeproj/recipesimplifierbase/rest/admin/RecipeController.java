@@ -104,7 +104,7 @@ public class RecipeController {
 
     @DeleteMapping("/{recipeId}")
     public ResponseEntity<?> delete(
-            @PathVariable("id") Long recipeId,
+            @PathVariable("recipeId") Long recipeId,
             HttpServletResponse response
     )  {
         if (!RecipeControllerValidator.delete(recipeId)) {
