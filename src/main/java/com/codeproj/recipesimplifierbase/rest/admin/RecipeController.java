@@ -4,8 +4,8 @@ import com.codeproj.recipesimplifierbase.data.repo.IngredientRepository;
 import com.codeproj.recipesimplifierbase.data.repo.PreparationRepository;
 import com.codeproj.recipesimplifierbase.data.repo.RecipeProcessRepository;
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
-import com.codeproj.recipesimplifierbase.dto.GeneralRestResponse;
-import com.codeproj.recipesimplifierbase.dto.RecipeDto;
+import com.codeproj.recipesimplifierbase.dto.*;
+import com.codeproj.recipesimplifierbase.model.Ingredient;
 import com.codeproj.recipesimplifierbase.model.Recipe;
 import com.codeproj.recipesimplifierbase.rest.validator.RecipeControllerValidator;
 import com.codeproj.recipesimplifierbase.service.FileStorageService;
@@ -22,7 +22,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Type;
 import java.net.URI;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -162,7 +167,36 @@ public class RecipeController {
         Type listType = new TypeToken<List<RecipeDto>>() {}.getType();
         List<RecipeDto> recipeDtoList = modelMapper.map(resultList, listType);
 
+        recipeDtoList.stream().forEach(
+                recipeDto -> {
+                    // Ingredient sort
+                    Set<IngredientDto> tempIngrSet = new TreeSet<>();
+                    for (IngredientDto item : recipeDto.getIngredients()) {
+                        tempIngrSet.add(item);
+                    }
+                    tempIngrSet.stream().sorted(Comparator.comparing(IngredientDto::getIngredientId));
 
+                    recipeDto.setIngredients(tempIngrSet);
+
+                    // Preparation sort
+                    Set<PreparationDto> tempPrepSet = new TreeSet<>();
+                    for (PreparationDto item : recipeDto.getPreparations()) {
+                        tempPrepSet.add(item);
+                    }
+                    tempPrepSet.stream().sorted(Comparator.comparing(PreparationDto::getPreparationId));
+
+                    recipeDto.setPreparations(tempPrepSet);
+
+                    // Preparation sort
+                    Set<RecipeProcessDto> tempProcSet = new TreeSet<>();
+                    for (RecipeProcessDto item : recipeDto.getProcesses()) {
+                        tempProcSet.add(item);
+                    }
+                    tempProcSet.stream().sorted(Comparator.comparing(RecipeProcessDto::getProcessId));
+
+                    recipeDto.setProcesses(tempProcSet);
+                }
+        );
         return ResponseEntity.ok(recipeDtoList);
     }
 

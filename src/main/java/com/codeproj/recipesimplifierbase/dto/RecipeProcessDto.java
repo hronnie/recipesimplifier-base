@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name="RecipeProcess")
-public class RecipeProcessDto {
+public class RecipeProcessDto implements Comparable<RecipeProcessDto>  {
 
     public RecipeProcessDto(String description, Integer duration) {
         this.description = description;
@@ -26,4 +26,8 @@ public class RecipeProcessDto {
     @XmlElement(name = "duration")
     private Integer duration;
 
+    @Override
+    public int compareTo(RecipeProcessDto recipeProcessDto) {
+        return processId.compareTo(recipeProcessDto.getProcessId());
+    }
 }

@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name="Ingredient")
-public class IngredientDto {
+public class IngredientDto implements Comparable<IngredientDto> {
 
     public IngredientDto(String name, Integer quantity, String unit, Long ingredientInfoId) {
         this.name = name;
@@ -35,4 +35,8 @@ public class IngredientDto {
     @XmlElement(name = "ingredientInfoId")
     private Long ingredientInfoId;
 
+    @Override
+    public int compareTo(IngredientDto ingredientDto) {
+        return ingredientId.compareTo(ingredientDto.getIngredientId());
+    }
 }
