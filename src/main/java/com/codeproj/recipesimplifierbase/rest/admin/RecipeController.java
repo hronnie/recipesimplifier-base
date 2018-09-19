@@ -77,9 +77,26 @@ public class RecipeController {
         }
 
         ModelMapper modelMapper = new ModelMapper();
-        Recipe newRecipeModel = modelMapper.map(updateRecipe, Recipe.class);
+        Recipe updateRecipeModel = modelMapper.map(updateRecipe, Recipe.class);
 
-        Recipe result = recipeRepository.save(newRecipeModel);
+        updateRecipeModel.getIngredients().stream().forEach(
+                ingredient -> {
+                    ingredient.setRecipe(updateRecipeModel);
+                }
+        );
+        updateRecipeModel.getPreparations().stream().forEach(
+                preparation -> {
+                    preparation.setRecipe(updateRecipeModel);
+                }
+        );
+        updateRecipeModel.getProcesses().stream().forEach(
+                process -> {
+                    process.setRecipe(updateRecipeModel);
+                }
+        );
+
+        Recipe result = recipeRepository.save(updateRecipeModel);
+
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().
                 path("byname/{name}").buildAndExpand(result.getName()).toUri();
         return ResponseEntity.ok(updateRecipe);
