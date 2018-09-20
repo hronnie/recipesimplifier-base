@@ -40,6 +40,12 @@ public class Recipe {
     @Column(name = "recipe_img_3")
     private String recipeImg3;
 
+    @Column(name = "recipe_img_4")
+    private String recipeImg4;
+
+    @Column(name = "recipe_img_5")
+    private String recipeImg5;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="recipe_id")
     private Set<Ingredient> ingredients;

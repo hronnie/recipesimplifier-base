@@ -58,4 +58,4 @@ spring:
 #mysql -u gastrouser -p -e "create database gastroadmin"
 
   image-store-path:
-    recipe-images: ./images/recipe
+    recipe-images: /Users/roni/temp/gastroimgs/images/recipe
