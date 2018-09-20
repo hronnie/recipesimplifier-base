@@ -73,8 +73,6 @@ public class RecipeImageController {
                 file.getContentType(), file.getSize()));
     }
 
-    //TODO: IMPLEMENT FILE DOES EXIST? METHOD
-
 //    @GetMapping("/all")
 //    public List<RecipeImage> getRecipeImagesList() {
 //        return recipeImageRepository.findAll();
