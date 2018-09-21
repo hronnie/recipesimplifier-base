@@ -6,14 +6,16 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @XmlRootElement(name="Preparation")
-public class PreparationDto {
+public class PreparationDto implements Comparable<PreparationDto> {
 
+    public PreparationDto(String description, Integer duration) {
+        this.description = description;
+        this.duration = duration;
+    }
 
     @XmlElement(name = "id")
     private Long preparationId;
@@ -24,4 +26,8 @@ public class PreparationDto {
     @XmlElement(name = "duration")
     private Integer duration;
 
+    @Override
+    public int compareTo(PreparationDto preparationDto) {
+        return preparationId.compareTo(preparationDto.getPreparationId());
+    }
 }

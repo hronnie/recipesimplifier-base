@@ -28,12 +28,12 @@ public class RecipeModelMapperTest {
         assertEquals(recipe.getCategory(), recipeDto.getCategory());
         assertEquals(recipe.getPrice(), recipeDto.getPrice());
         assertEquals(recipe.getCalorie(), recipeDto.getCalorie());
-        IngredientDto ingredientDto = recipeDto.getIngredients().iterator().next();
         Ingredient ingredientModel = recipe.getIngredients().iterator().next();
         assertEquals(ingredientModel.getIngredientId(), ingredient.getIngredientId());
         assertEquals(ingredientModel.getName(), ingredient.getName());
         assertEquals(ingredientModel.getQuantity(), ingredient.getQuantity());
         assertEquals(ingredientModel.getUnit(), ingredient.getUnit());
+        assertEquals(ingredientModel.getIngredientInfo(), ingredient.getIngredientInfo());
 
         Preparation preparationModel = recipe.getPreparations().iterator().next();
         PreparationDto preparationDto = recipeDto.getPreparations().iterator().next();

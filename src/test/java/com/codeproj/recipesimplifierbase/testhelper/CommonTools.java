@@ -1,9 +1,6 @@
 package com.codeproj.recipesimplifierbase.testhelper;
 
-import com.codeproj.recipesimplifierbase.model.Ingredient;
-import com.codeproj.recipesimplifierbase.model.Preparation;
-import com.codeproj.recipesimplifierbase.model.Recipe;
-import com.codeproj.recipesimplifierbase.model.RecipeProcess;
+import com.codeproj.recipesimplifierbase.model.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +8,8 @@ import java.util.Set;
 public class CommonTools {
 
     public static final Recipe recipe = new Recipe();
+
+    public static final IngredientInfo ingredientInfo = new IngredientInfo();
 
     public static final Ingredient ingredient = new Ingredient();
     static {
@@ -55,9 +54,16 @@ public class CommonTools {
         recipe.setName("Recipe name");
         recipe.setCategory("Recipe category");
         recipe.setPrice(3000);
-        recipe.setCalorie(333);
+        recipe.setCalorie("303");
         recipe.setIngredients(ingredients);
         recipe.setPreparations(preparations);
         recipe.setProcesses(recipeProcesses);
     }
+
+    static {
+        ingredientInfo.setIngredientInfoId(44l);
+        ingredientInfo.setName("Info name");
+        ingredientInfo.setDescription("ingredient info description");
+    }
+
 }

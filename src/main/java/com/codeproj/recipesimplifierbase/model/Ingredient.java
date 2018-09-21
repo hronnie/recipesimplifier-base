@@ -12,12 +12,6 @@ import javax.persistence.*;
 @Table(name="Ingredient")
 public class Ingredient {
 
-    public Ingredient(String name, Integer quantity, String unit) {
-        this.name = name;
-        this.quantity = quantity;
-        this.unit = unit;
-    }
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,5 +28,8 @@ public class Ingredient {
 
     @ManyToOne
     private Recipe recipe;
+
+    @ManyToOne
+    private IngredientInfo ingredientInfo;
 
 }

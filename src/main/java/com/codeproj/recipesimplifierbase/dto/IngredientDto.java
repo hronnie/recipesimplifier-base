@@ -6,14 +6,18 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @XmlRootElement(name="Ingredient")
-public class IngredientDto {
+public class IngredientDto implements Comparable<IngredientDto> {
 
+    public IngredientDto(String name, Integer quantity, String unit, Long ingredientInfoId) {
+        this.name = name;
+        this.quantity = quantity;
+        this.unit = unit;
+        this.ingredientInfoId = ingredientInfoId;
+    }
 
     @XmlElement(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,4 +32,11 @@ public class IngredientDto {
     @XmlElement(name = "unit")
     private String unit;
 
+    @XmlElement(name = "ingredientInfoId")
+    private Long ingredientInfoId;
+
+    @Override
+    public int compareTo(IngredientDto ingredientDto) {
+        return ingredientId.compareTo(ingredientDto.getIngredientId());
+    }
 }

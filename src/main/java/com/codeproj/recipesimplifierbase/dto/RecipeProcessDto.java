@@ -6,14 +6,16 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @XmlRootElement(name="RecipeProcess")
-public class RecipeProcessDto {
+public class RecipeProcessDto implements Comparable<RecipeProcessDto>  {
 
+    public RecipeProcessDto(String description, Integer duration) {
+        this.description = description;
+        this.duration = duration;
+    }
 
     @XmlElement(name = "id")
     private Long processId;
@@ -24,4 +26,8 @@ public class RecipeProcessDto {
     @XmlElement(name = "duration")
     private Integer duration;
 
+    @Override
+    public int compareTo(RecipeProcessDto recipeProcessDto) {
+        return processId.compareTo(recipeProcessDto.getProcessId());
+    }
 }

@@ -8,10 +8,10 @@ INSERT INTO authority (id, name) VALUES (2, 'ROLE_ADMIN');
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2);
- INSERT INTO Recipe (id, calorie, category, name, price) VALUES (1, 123, 'mainCouse', 'Gulyas', 1000);
- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (1, 'Krumpli', 1, 'kg', 1);
- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (2, 'tojas', 3, 'db', 1);
- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (3, 'liszt', 20, 'dkg', 1);
+ INSERT INTO Recipe (id, calorie, category, name, price) VALUES (1, 123, 'mainCourse', 'Gulyas', 1000);
+ INSERT INTO ingredient (id, name, quantity, unit, recipe_id, ingredient_info_id) VALUES (1, 'Krumpli', 1, 'kg', 1, 4);
+ INSERT INTO ingredient (id, name, quantity, unit, recipe_id, ingredient_info_id) VALUES (2, 'tojas', 3, 'db', 1, 5);
+ INSERT INTO ingredient (id, name, quantity, unit, recipe_id, ingredient_info_id) VALUES (3, 'liszt', 20, 'dkg', 1, 1);
  INSERT INTO preparation (id, description, duration, recipe_id) VALUES (1, 'elokeszites1', 11, 1);
  INSERT INTO preparation (id, description, duration, recipe_id) VALUES (2, 'elokeszites2', 22, 1);
  INSERT INTO preparation (id, description, duration, recipe_id) VALUES (3, 'elokeszites3', 33, 1);
@@ -20,9 +20,9 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2);
  INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (3, 'elkeszites3', 33, 1);
 
 
- INSERT INTO recipe (id, calorie, category, name, price) VALUES (2, 234, 'mainCouse', 'Brokkoli krem leves', 850);
- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (4, 'Krumpli', 1, 'kg', 2);
- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (5, 'tojas', 3, 'db', 2);
+ INSERT INTO recipe (id, calorie, category, name, price) VALUES (2, 234, 'mainCourse', 'Brokkoli krem leves', 850);
+ INSERT INTO ingredient (id, name, quantity, unit, recipe_id, ingredient_info_id) VALUES (4, 'Krumpli', 1, 'kg', 2, 4);
+ INSERT INTO ingredient (id, name, quantity, unit, recipe_id, ingredient_info_id) VALUES (5, 'tojas', 3, 'db', 2, 5);
  INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (6, 'liszt', 20, 'dkg', 2);
  INSERT INTO preparation (id, description, duration, recipe_id) VALUES (4, 'elokeszites1', 11, 2);
  INSERT INTO preparation (id, description, duration, recipe_id) VALUES (5, 'elokeszites2', 22, 2);
@@ -32,13 +32,23 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2);
  INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (6, 'elkeszites3', 33, 2);
 
 
- INSERT INTO recipe (id, calorie, category, name, price) VALUES (3, 654, 'mainCouse', 'Gorog sali', 1200);
+ INSERT INTO recipe (id, calorie, category, name, price) VALUES (3, 654, 'mainCourse', 'Gorog sali', 1200);
  INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (7, 'Krumpli', 1, 'kg', 3);
- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (8, 'tojas', 3, 'db', 3);
- INSERT INTO ingredient (id, name, quantity, unit, recipe_id) VALUES (9, 'liszt', 20, 'dkg', 3);
+ INSERT INTO ingredient (id, name, quantity, unit, recipe_id, ingredient_info_id) VALUES (8, 'tojas', 3, 'db', 3, 5);
+ INSERT INTO ingredient (id, name, quantity, unit, recipe_id, ingredient_info_id) VALUES (9, 'liszt', 20, 'dkg', 3, 1);
  INSERT INTO preparation (id, description, duration, recipe_id) VALUES (7, 'elokeszites1', 11, 3);
  INSERT INTO preparation (id, description, duration, recipe_id) VALUES (8, 'elokeszites2', 22, 3);
  INSERT INTO preparation (id, description, duration, recipe_id) VALUES (9, 'elokeszites3', 33, 3);
  INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (7, 'elkeszites1', 11, 3);
  INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (8, 'elkeszites2', 22, 3);
  INSERT INTO recipe_process (id, description, duration, recipe_id) VALUES (9, 'elkeszites3', 33, 3);
+
+ INSERT INTO ingredient_info (id, name, description) VALUES (1, "Liszt", "A gabonát aratás után gabonatárolókban (siló) tárolják, innen szállítják a malmokba. A malmokban egy összetett műveletsor alatt először a szennyeződésektől megtisztítják, aprítják (megőrlik), és osztályozzák (szitálás) termékfajta és szemcseméret szerint. Az őrlés célja a gabonaszemek két fő alkotójának, a héjnak és a magbelsőnek a lehető legtökéletesebb szétválasztása. Ezután a további felhasználásnak megfelelően adagolják és csomagolják a termékeket. A hazai boltokba kerülő legalsó sikérküszöb 28%, amivel a magyar szabvány a világon a legmagasabb követelményű. A farinográf – lisztminősítő műszer – Hankóczy Jenő és Brabender duisburgi mérnök találmánya.");
+ INSERT INTO ingredient_info (id, name, description) VALUES (2, "Cukor", "Étkezési cukorként (szacharóz) a cukorrépából előállított répacukrot vagy a cukornádból előállított nádcukrot ismerhetjük. Ezekből több termék készül, például a kristálycukor, porcukor, kockacukor, illetve különböző édességek tartalmazhatják. Európában a répacukor előállítása a legolcsóbb, ezért ez a legelterjedtebb. Melegebb éghajlatú területeken a nádcukor az elterjedt, amit cukornádból állítanak elő, illetve ismert még a juharcukor, amit északi országokban a juharfa nedvéből nyernek. Kémiailag mindhárom cukorfajta teljesen egyforma, csupán a kiindulási növényekből a gyártás során megmaradó szennyezőanyagok okozzák a különbségeket.");
+ INSERT INTO ingredient_info (id, name, description) VALUES (3, "Rízs", "A barna rizs attól barna, hogy a hántolás után nem koptatják le róla a pelyvás héj alatti úgynevezett „ezüsthártyát” (korpa és csíra), emiatt nagyobb a tápértéke, viszont lassabban fő, s keményebb marad. A hántolt rizsek egy speciális változata a parboiled vagy opál rizs, melyet még a héjában felgőzölnek, s csak azután hántolnak. Ez a nyersen hántolt-koptatottnál ízesebb, tápdúsabb, s bár a színe eredetileg barnás, mire megfő, kifehéredik. A hántolt és koptatott fehér rizs kevésbé jellegzetes ízű, forgalomba kerülhet ''A'' vagy ''B'' minőségben (a szemtörmelék és az idegen anyag mennyisége alapján). A fényezetlen fehér rizsből fényező anyagok hozzáadásával készül a fényezett rizs.");
+ INSERT INTO ingredient_info (id, name, description) VALUES (4, "Burgonya", "A burgonya (Solanum tuberosum), a köznyelvben krumpli, tájnyelvi nevén krumpedli, kolompér, kompér, kolompír, korompér, krompér, grulya, földialma, svábtök vagy pityóka (Erdélyben). A burgonyafélék (Solanaceae) családba tartozó növény, amit keményítőben gazdag gumójáért termesztenek világszerte.");
+ INSERT INTO ingredient_info (id, name, description) VALUES (5, "Tojás", "A tojás (elavult nevén mony)[1] egyetlen sejtből (petesejtből) és az azt körülvevő tartalék tápanyagokból és védőrétegekből áll. A petesejt, illetve megtermékenyülés után a zigóta a tojás sárgája; ezt a tápanyag raktárként működő tojásfehérje veszi körül. A tojást burkolatok védelmezik, amelynek fő alkotó eleme általában a mész. Ennek köznyelvi neve a tojáshéj.");
+ INSERT INTO ingredient_info (id, name, description) VALUES (6, "Hagyma", "Illóolajat, B-, és C-vitaminból 30 mg/100 g-ot (de a zöldhagyma még ennél is többet), pektint, guvertint is tartalmaz. A jellegzetes csípős ízét és illatát egy kéntartalmú vegyület, az allilszulfid adja. Ennek a hatóanyagnak baktériumölő hatása van, ezért a meghűléses időkben a fertőzések megelőzésére is használták.");
+ INSERT INTO ingredient_info (id, name, description) VALUES (7, "Mák", "A kerti mák (Papaver somniferum) fontos élelmiszernövény: népszerű, mákkal ízesített ételek például a pozsonyi kifli és a mákos guba. Gubója alkaloidákat tartalmaz (morfin, kodein, papaverin stb.); magasabb alkaloida-tartalmú fajtái adják az ópiumgyártás alapanyagát.");
+ INSERT INTO ingredient_info (id, name, description) VALUES (8, "Burgul", "A bulgur tulajdonképpen tört búza, Magyarországon a török éttermekben „török rizsnek” is nevezik. Leginkább a közel-keleti és a török konyha által kedvelt köret. A még éretlen vagy a meghántolt érett búzaszemeket párolják, kiszárítják, majd durvára összetörik.");
+ INSERT INTO ingredient_info (id, name, description) VALUES (9, "Tészta", "Tészta alatt több alapvető élelmiszert értünk. A magyar táplálkozáskultúrában a főtt tészta a kora újkorban vált általánossá, előtte a középkorban az erjesztett kenyereket fogyasztották.");

@@ -23,13 +23,28 @@ public class Recipe {
     private String name;
 
     @Column(name = "calorie")
-    private Integer calorie;
+    private String calorie;
 
     @Column(name = "price")
     private Integer price;
 
     @Column(name = "category")
     private String category;
+
+    @Column(name = "recipe_img_1")
+    private String recipeImg1;
+
+    @Column(name = "recipe_img_2")
+    private String recipeImg2;
+
+    @Column(name = "recipe_img_3")
+    private String recipeImg3;
+
+    @Column(name = "recipe_img_4")
+    private String recipeImg4;
+
+    @Column(name = "recipe_img_5")
+    private String recipeImg5;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="recipe_id")
