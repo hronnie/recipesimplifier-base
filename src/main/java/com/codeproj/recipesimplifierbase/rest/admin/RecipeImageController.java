@@ -32,10 +32,6 @@ public class RecipeImageController {
 
     private static final Logger logger = LoggerFactory.getLogger(RecipeImageController.class);
 
-    //TODO: remove recipeImage object since we don't need it
-//    @Autowired
-//    RecipeImageRepository recipeImageRepository;
-
     @Autowired
     RecipeRepository recipeRepository;
 
