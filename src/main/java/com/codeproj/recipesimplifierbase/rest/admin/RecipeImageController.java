@@ -130,12 +130,11 @@ public class RecipeImageController {
             }
         }
 
-
         if (fileName == null || "".equals(fileName)) {
             logger.debug("recipe image with the given index doesn't exist");
             return ResponseEntity.unprocessableEntity().build();
         }
-        RecipeImageDto recipeImageDto = fileStorageService.loadImage(fileName, recipeId);
+        RecipeImageDto recipeImageDto = fileStorageService.loadRecipeImage(fileName, recipeId);
 
         return ResponseEntity.ok().contentType(recipeImageDto.getContentType()).body(recipeImageDto.getMedia());
     }

@@ -58,8 +58,9 @@ public class FileStorageService {
         }
     }
 
-    public RecipeImageDto loadImage(String fileName, Long recipeId) throws IOException {
-
+    public RecipeImageDto loadRecipeImage(
+            String fileName, Long recipeId)
+            throws IOException {
 
         Path filePath = this.fileStorageLocation.resolve(recipeId.toString() + "/" + fileName).normalize();
         byte[] media = Files.readAllBytes(filePath);
