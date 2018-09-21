@@ -1,6 +1,7 @@
 package com.codeproj.recipesimplifierbase.rest.admin;
 
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
+import com.codeproj.recipesimplifierbase.dto.RecipeImageAlbumDto;
 import com.codeproj.recipesimplifierbase.dto.RecipeImageDto;
 import com.codeproj.recipesimplifierbase.dto.UploadFileResponse;
 import com.codeproj.recipesimplifierbase.model.Recipe;
@@ -83,10 +84,27 @@ public class RecipeImageController {
     }
 
 
-//    @GetMapping("/all")
-//    public List<RecipeImage> getRecipeImagesList() {
-//        return recipeImageRepository.findAll();
-//    }
+    @GetMapping("/all/{recipeId}")
+    public ResponseEntity<?> getRecipeImagesList(@PathVariable("recipeId") Long recipeId) {
+        if (!RecipeImageValidator.getRecipeImagesList(recipeId)) {
+            logger.debug("recipeId is not valid ");
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        Recipe exsitingRecipe = recipeRepository.findRecipeByRecipeId(recipeId);
+        if (exsitingRecipe == null) {
+            logger.debug("recipe with the given recipeId doesn't exist");
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        RecipeImageAlbumDto result = new RecipeImageAlbumDto(
+                exsitingRecipe.getRecipeImg1(),
+                exsitingRecipe.getRecipeImg2(),
+                exsitingRecipe.getRecipeImg3(),
+                exsitingRecipe.getRecipeImg4(),
+                exsitingRecipe.getRecipeImg5()
+        );
+        return ResponseEntity.ok(result);
+    }
 
     @GetMapping("/{recipeId}/{index}")
     public ResponseEntity<byte[]> getRecipeImage(

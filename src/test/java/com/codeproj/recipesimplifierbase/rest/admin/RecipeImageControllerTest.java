@@ -37,5 +37,12 @@ public class RecipeImageControllerTest {
     assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
   }
 
+  @Test
+  public void getRecipeImagesList() {
+    HttpStatus statusCode = recipeImageController.getRecipeImagesList( null).getStatusCode();
+    assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
+    statusCode = recipeImageController.getRecipeImagesList( 0l).getStatusCode();
+    assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
+  }
 
 }
