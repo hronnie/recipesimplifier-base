@@ -45,4 +45,20 @@ public class RecipeImageControllerTest {
     assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
   }
 
+  @Test
+  public void delete() {
+    HttpStatus statusCode = recipeImageController.delete(null, null, null).getStatusCode();
+    assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
+    statusCode = recipeImageController.delete(0l, 4, null).getStatusCode();
+    assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
+    statusCode = recipeImageController.delete(3l, 6, null).getStatusCode();
+    assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
+    statusCode = recipeImageController.delete(3l, 0, null).getStatusCode();
+    assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
+    statusCode = recipeImageController.delete(3l, null, null).getStatusCode();
+    assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
+    statusCode = recipeImageController.delete(null, 4, null).getStatusCode();
+    assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, statusCode);
+  }
+
 }

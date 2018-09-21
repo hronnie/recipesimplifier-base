@@ -26,4 +26,9 @@ public class RecipeImageValidator extends ValidatorBase {
   public static boolean getRecipeImagesList(Long recipeId) {
     return isEntityIdValid(recipeId);
   }
+
+  public static boolean delete(Integer index, Long recipeId) {
+    return isEntityIdValid(recipeId)
+      && isIndexValid(index);
+  }
 }

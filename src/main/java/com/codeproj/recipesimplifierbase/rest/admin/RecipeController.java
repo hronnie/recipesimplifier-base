@@ -5,7 +5,6 @@ import com.codeproj.recipesimplifierbase.data.repo.PreparationRepository;
 import com.codeproj.recipesimplifierbase.data.repo.RecipeProcessRepository;
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
 import com.codeproj.recipesimplifierbase.dto.*;
-import com.codeproj.recipesimplifierbase.model.Ingredient;
 import com.codeproj.recipesimplifierbase.model.Recipe;
 import com.codeproj.recipesimplifierbase.rest.validator.RecipeControllerValidator;
 import com.codeproj.recipesimplifierbase.service.FileStorageService;

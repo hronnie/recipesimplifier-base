@@ -4,6 +4,8 @@ import com.codeproj.recipesimplifierbase.common.RecipeImageFileStorageProperties
 
 import com.codeproj.recipesimplifierbase.dto.RecipeImageDto;
 import com.codeproj.recipesimplifierbase.exception.FileStorageException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ import java.nio.file.StandardCopyOption;
 
 @Service
 public class FileStorageService {
+
+    private static final Logger logger = LoggerFactory.getLogger(FileStorageService.class);
 
     private final Path fileStorageLocation;
 
@@ -62,7 +66,7 @@ public class FileStorageService {
             String fileName, Long recipeId)
             throws IOException {
 
-        Path filePath = this.fileStorageLocation.resolve(recipeId.toString() + "/" + fileName).normalize();
+        Path filePath = getRecipePath(fileName, recipeId);
         byte[] media = Files.readAllBytes(filePath);
         MediaType mimeTypeObj = null;
         File tempFile = new File(filePath.toString());
@@ -79,4 +83,20 @@ public class FileStorageService {
 
         return new RecipeImageDto(media, mimeTypeObj);
     }
+
+    public boolean deleteRecipeImage(String fileName, Long recipeId) {
+        Path filePath = getRecipePath(fileName, recipeId);
+        try {
+            Files.delete(filePath);
+            return true;
+        } catch (IOException e) {
+            logger.error("Couldn't delete file on the following path:" + filePath);
+            return false;
+        }
+    }
+
+    private Path getRecipePath(String fileName, Long recipeId) {
+        return this.fileStorageLocation.resolve(recipeId.toString() + "/" + fileName).normalize();
+    }
+
 }
