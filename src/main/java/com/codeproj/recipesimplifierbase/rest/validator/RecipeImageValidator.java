@@ -18,4 +18,8 @@ public class RecipeImageValidator extends ValidatorBase {
     return index != null && index > 0 && index < 6;
   }
 
+  public static boolean getRecipeImage(Integer index, Long recipeId) {
+    return isEntityIdValid(recipeId)
+      && isIndexValid(index);
+  }
 }

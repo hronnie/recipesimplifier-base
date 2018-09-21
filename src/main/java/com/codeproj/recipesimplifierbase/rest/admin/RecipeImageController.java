@@ -1,16 +1,29 @@
 package com.codeproj.recipesimplifierbase.rest.admin;
 
 import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
+import com.codeproj.recipesimplifierbase.dto.RecipeImageDto;
 import com.codeproj.recipesimplifierbase.dto.UploadFileResponse;
 import com.codeproj.recipesimplifierbase.model.Recipe;
 import com.codeproj.recipesimplifierbase.rest.validator.RecipeImageValidator;
 import com.codeproj.recipesimplifierbase.service.FileStorageService;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -73,22 +86,58 @@ public class RecipeImageController {
                 file.getContentType(), file.getSize()));
     }
 
+
 //    @GetMapping("/all")
 //    public List<RecipeImage> getRecipeImagesList() {
 //        return recipeImageRepository.findAll();
 //    }
 
-//    @GetMapping("/{imgName}")
-//    public ResponseEntity<byte[]> getRecipeImageByName(@PathVariable String imgName) {
-//        RecipeImage recipeImageFile = recipeImageRepository.findRecipeImageByName(imgName);
-//
-//        if(recipeImageFile != null) {
-//            return ResponseEntity.ok()
-//                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recipeImageFile.getName() + "\"")
-//                    .body(recipeImageFile.getImageContent());
-//        }
-//
-//        return ResponseEntity.status(404).body(null);
-//    }
+    @GetMapping("/{recipeId}/{index}")
+    public ResponseEntity<byte[]> getRecipeImage(
+            @PathVariable("recipeId") Long recipeId,
+            @PathVariable("index") Integer index,
+            HttpServletRequest request
+    ) throws IOException {
+
+        if (!RecipeImageValidator.getRecipeImage(index, recipeId)) {
+            logger.debug("index or recipeId is not valid or the file wasn't an image");
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        Recipe exsitingRecipe = recipeRepository.findRecipeByRecipeId(recipeId);
+        if (exsitingRecipe == null) {
+            logger.debug("recipe with the given recipeId doesn't exist");
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        String fileName = null;
+
+        switch (index) {
+            case 1: {
+                fileName = exsitingRecipe.getRecipeImg1();
+            } break;
+            case 2: {
+                fileName = exsitingRecipe.getRecipeImg2();
+            } break;
+            case 3: {
+                fileName = exsitingRecipe.getRecipeImg3();
+            } break;
+            case 4: {
+                fileName = exsitingRecipe.getRecipeImg4();
+            } break;
+            case 5: {
+                fileName = exsitingRecipe.getRecipeImg5();
+            }
+        }
+
+
+        if (fileName == null || "".equals(fileName)) {
+            logger.debug("recipe image with the given index doesn't exist");
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        RecipeImageDto recipeImageDto = fileStorageService.loadImage(fileName, recipeId);
+
+        return ResponseEntity.ok().contentType(recipeImageDto.getContentType()).body(recipeImageDto.getMedia());
+    }
 
 }
