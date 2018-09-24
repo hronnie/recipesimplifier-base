@@ -189,6 +189,9 @@ public class RecipeController {
                     Set<IngredientDto> tempIngrSet = new TreeSet<>();
                     for (IngredientDto item : recipeDto.getIngredients()) {
                         IngredientInfo info = ingrInfoTextMap.get(item.getIngredientInfoId());
+                        if (info == null) {
+                            continue;
+                        }
                         item.setIngredientInfoName(info.getName());
                         item.setIngredientInfoDesc(info.getDescription());
                         tempIngrSet.add(item);
