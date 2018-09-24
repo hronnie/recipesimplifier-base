@@ -18,6 +18,7 @@ public class CommonTools {
         ingredient.setQuantity(1);
         ingredient.setUnit("Ingredient unit");
         ingredient.setRecipe(recipe);
+        ingredient.setIngredientInfo(ingredientInfo);
     }
 
     public static final Set<Ingredient> ingredients = new HashSet<>();

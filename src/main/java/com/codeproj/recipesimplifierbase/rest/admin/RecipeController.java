@@ -1,13 +1,10 @@
 package com.codeproj.recipesimplifierbase.rest.admin;
 
-import com.codeproj.recipesimplifierbase.data.repo.IngredientRepository;
-import com.codeproj.recipesimplifierbase.data.repo.PreparationRepository;
-import com.codeproj.recipesimplifierbase.data.repo.RecipeProcessRepository;
-import com.codeproj.recipesimplifierbase.data.repo.RecipeRepository;
+import com.codeproj.recipesimplifierbase.data.repo.*;
 import com.codeproj.recipesimplifierbase.dto.*;
+import com.codeproj.recipesimplifierbase.model.IngredientInfo;
 import com.codeproj.recipesimplifierbase.model.Recipe;
 import com.codeproj.recipesimplifierbase.rest.validator.RecipeControllerValidator;
-import com.codeproj.recipesimplifierbase.service.FileStorageService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
@@ -21,10 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Type;
 import java.net.URI;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -38,9 +32,6 @@ public class RecipeController {
     private RecipeRepository recipeRepository;
 
     @Autowired
-    private FileStorageService fileStorageService;
-
-    @Autowired
     private IngredientRepository ingredientRepository;
 
     @Autowired
@@ -48,6 +39,9 @@ public class RecipeController {
 
     @Autowired
     private RecipeProcessRepository recipeProcessRepository;
+
+    @Autowired
+    private IngredientInfoRepository ingredientInfoRepository;
 
 
     @PostMapping("/")
@@ -164,11 +158,39 @@ public class RecipeController {
         Type listType = new TypeToken<List<RecipeDto>>() {}.getType();
         List<RecipeDto> recipeDtoList = modelMapper.map(resultList, listType);
 
+
+        // collects every ingredient info id from ingredient object
+        List<Long> ingrInfoIdList = new ArrayList<>();
+        recipeDtoList.stream().forEach(
+                recipeDto -> {
+                    Set<IngredientDto> tempIngrSet = recipeDto.getIngredients();
+                    tempIngrSet.stream().forEach(
+                            item -> {
+                                ingrInfoIdList.add(item.getIngredientInfoId());
+                            }
+                    );
+                }
+        );
+
+        // creates a map which stores ingredient info id and it's entity
+        List<IngredientInfo> ingrInfoResult = ingredientInfoRepository.findByIngredientInfoIdIn(ingrInfoIdList);
+        Map<Long, IngredientInfo> ingrInfoTextMap = new HashMap<>();
+        if (ingrInfoResult != null && !ingrInfoResult.isEmpty()) {
+            ingrInfoResult.stream().forEach(
+                    item -> {
+                        ingrInfoTextMap.put(item.getIngredientInfoId(), item);
+                    }
+            );
+        }
+
         recipeDtoList.stream().forEach(
                 recipeDto -> {
                     // Ingredient sort
                     Set<IngredientDto> tempIngrSet = new TreeSet<>();
                     for (IngredientDto item : recipeDto.getIngredients()) {
+                        IngredientInfo info = ingrInfoTextMap.get(item.getIngredientInfoId());
+                        item.setIngredientInfoName(info.getName());
+                        item.setIngredientInfoDesc(info.getDescription());
                         tempIngrSet.add(item);
                     }
                     tempIngrSet.stream().sorted(Comparator.comparing(IngredientDto::getIngredientId));
@@ -184,7 +206,7 @@ public class RecipeController {
 
                     recipeDto.setPreparations(tempPrepSet);
 
-                    // Preparation sort
+                    // Process sort
                     Set<RecipeProcessDto> tempProcSet = new TreeSet<>();
                     for (RecipeProcessDto item : recipeDto.getProcesses()) {
                         tempProcSet.add(item);

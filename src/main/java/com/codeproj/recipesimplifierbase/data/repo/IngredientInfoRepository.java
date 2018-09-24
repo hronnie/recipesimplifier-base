@@ -24,4 +24,6 @@ public interface IngredientInfoRepository extends CrudRepository<IngredientInfo,
 
     public boolean existsById(Long ingredientId);
 
+    public List<IngredientInfo> findByIngredientInfoIdIn(List<Long> ingredientIdList);
+
 }

@@ -1,8 +1,11 @@
 package com.codeproj.recipesimplifierbase.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -12,11 +15,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="Ingredient")
 public class IngredientDto implements Comparable<IngredientDto> {
 
-    public IngredientDto(String name, Integer quantity, String unit, Long ingredientInfoId) {
+    public IngredientDto(String name,
+                         Integer quantity,
+                         String unit,
+                         Long ingredientInfoId,
+                         String ingredientInfoName,
+                         String ingredientInfoDesc) {
         this.name = name;
         this.quantity = quantity;
         this.unit = unit;
         this.ingredientInfoId = ingredientInfoId;
+        this.ingredientInfoName = ingredientInfoName;
+        this.ingredientInfoDesc = ingredientInfoDesc;
     }
 
     @XmlElement(name = "id")
@@ -35,8 +45,15 @@ public class IngredientDto implements Comparable<IngredientDto> {
     @XmlElement(name = "ingredientInfoId")
     private Long ingredientInfoId;
 
+    @XmlElement(name = "ingredientInfoName")
+    private String ingredientInfoName;
+
+    @XmlElement(name = "ingredientInfoDesc")
+    private String ingredientInfoDesc;
+
     @Override
     public int compareTo(IngredientDto ingredientDto) {
         return ingredientId.compareTo(ingredientDto.getIngredientId());
     }
+
 }

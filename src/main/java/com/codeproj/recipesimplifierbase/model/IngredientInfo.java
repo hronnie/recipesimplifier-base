@@ -24,7 +24,7 @@ public class IngredientInfo {
     @Column(name = "description", length = 1000)
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="ingredient_info_id")
     private Set<Ingredient> ingredients;
 
